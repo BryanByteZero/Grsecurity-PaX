@@ -1,0 +1,1893 @@
+Make expert-level adjustments to RCU configuration (RCU_EXPERT) [N/y/?] (NEW) n
+*
+* General setup
+*
+Cross-compiler tool prefix (CROSS_COMPILE) []
+Compile also drivers which will not load (COMPILE_TEST) [N/y/?] n
+Local version - append to kernel release (LOCALVERSION) []
+Automatically append version information to the version string (LOCALVERSION_AUTO) [N/y/?] n
+Kernel compression mode
+  1. Gzip (KERNEL_GZIP)
+  2. Bzip2 (KERNEL_BZIP2)
+  3. LZMA (KERNEL_LZMA)
+> 4. XZ (KERNEL_XZ)
+  5. LZO (KERNEL_LZO)
+  6. LZ4 (KERNEL_LZ4)
+choice[1-6?]: 4
+Default hostname (DEFAULT_HOSTNAME) [(none)] (none)
+Support for paging of anonymous memory (swap) (SWAP) [Y/n/?] y
+System V IPC (SYSVIPC) [Y/n/?] y
+POSIX Message Queues (POSIX_MQUEUE) [Y/n/?] y
+Enable process_vm_readv/writev syscalls (CROSS_MEMORY_ATTACH) [Y/n/?] y
+open by fhandle syscalls (FHANDLE) [Y/n/?] y
+uselib syscall (USELIB) [Y/n/?] y
+Auditing support (AUDIT) [Y/?] y
+*
+* IRQ subsystem
+*
+Expose hardware/virtual IRQ mapping via debugfs (IRQ_DOMAIN_DEBUG) [N/y/?] n
+*
+* Timers subsystem
+*
+Timer tick handling
+  1. Periodic timer ticks (constant rate, no dynticks) (HZ_PERIODIC)
+> 2. Idle dynticks system (tickless idle) (NO_HZ_IDLE)
+  3. Full dynticks system (tickless) (NO_HZ_FULL)
+choice[1-3]: 2
+Old Idle dynticks config (NO_HZ) [N/y/?] n
+High Resolution Timer Support (HIGH_RES_TIMERS) [Y/n/?] y
+*
+* CPU/Task time and stats accounting
+*
+Cputime accounting
+> 1. Simple tick based cputime accounting (TICK_CPU_ACCOUNTING)
+  2. Full dynticks CPU time accounting (VIRT_CPU_ACCOUNTING_GEN)
+  3. Fine granularity task level IRQ time accounting (IRQ_TIME_ACCOUNTING)
+choice[1-3]: 1
+BSD Process Accounting (BSD_PROCESS_ACCT) [Y/n/?] y
+  BSD Process Accounting version 3 file format (BSD_PROCESS_ACCT_V3) [Y/n/?] y
+Export task/process statistics through netlink (TASKSTATS) [Y/?] y
+  Enable per-task delay accounting (TASK_DELAY_ACCT) [Y/?] y
+  Enable extended accounting over taskstats (TASK_XACCT) [Y/n/?] y
+    Enable per-task storage I/O accounting (TASK_IO_ACCOUNTING) [Y/n/?] y
+*
+* RCU Subsystem
+*
+Make expert-level adjustments to RCU configuration (RCU_EXPERT) [N/y/?] n
+Kernel .config support (IKCONFIG) [N/m/y/?] n
+Kernel log buffer size (16 => 64KB, 17 => 128KB) (LOG_BUF_SHIFT) [17] 17
+CPU kernel log buffer size contribution (13 => 8 KB, 17 => 128KB) (LOG_CPU_MAX_BUF_SHIFT) [12] (NEW)
+Memory placement aware NUMA scheduler (NUMA_BALANCING) [Y/n/?] y
+  Automatically enable NUMA aware memory/task placement (NUMA_BALANCING_DEFAULT_ENABLED) [N/y/?] n
+*
+* Control Group support
+*
+Control Group support (CGROUPS) [Y/?] y
+  Memory controller (MEMCG) [Y/n/?] y
+    Swap controller (MEMCG_SWAP) [Y/n/?] y
+      Swap controller enabled by default (MEMCG_SWAP_ENABLED) [N/y/?] n
+  IO controller (BLK_CGROUP) [Y/n/?] y
+    IO controller debugging (DEBUG_BLK_CGROUP) [N/y/?] n
+  *
+  * CPU controller
+  *
+  CPU controller (CGROUP_SCHED) [Y/?] y
+    Group scheduling for SCHED_OTHER (FAIR_GROUP_SCHED) [Y] y
+      CPU bandwidth provisioning for FAIR_GROUP_SCHED (CFS_BANDWIDTH) [N/y/?] n
+    Group scheduling for SCHED_RR/FIFO (RT_GROUP_SCHED) [N/y/?] n
+  PIDs controller (CGROUP_PIDS) [N/y/?] (NEW)
+  Freezer controller (CGROUP_FREEZER) [Y/n/?] y
+  HugeTLB controller (CGROUP_HUGETLB) [N/y/?] n
+  Cpuset controller (CPUSETS) [Y/n/?] y
+    Include legacy /proc/<pid>/cpuset file (PROC_PID_CPUSET) [Y/n] y
+  Device controller (CGROUP_DEVICE) [Y/n/?] y
+  Simple CPU accounting controller (CGROUP_CPUACCT) [Y/n/?] y
+  Perf controller (CGROUP_PERF) [Y/n/?] y
+  Example controller (CGROUP_DEBUG) [N/y/?] n
+Checkpoint/restore support (CHECKPOINT_RESTORE) [Y/n/?] y
+*
+* Namespaces support
+*
+Namespaces support (NAMESPACES) [Y/n/?] y
+  UTS namespace (UTS_NS) [Y/n/?] y
+  IPC namespace (IPC_NS) [Y/n/?] y
+  User namespace (USER_NS) [Y/n/?] y
+  PID Namespaces (PID_NS) [Y/n/?] y
+  Network namespace (NET_NS) [Y/n/?] y
+Automatic process group scheduling (SCHED_AUTOGROUP) [Y/n/?] y
+Enable deprecated sysfs features to support old userspace tools (SYSFS_DEPRECATED) [N/y/?] n
+Kernel->user space relay support (formerly relayfs) (RELAY) [Y/?] y
+Initial RAM filesystem and RAM disk (initramfs/initrd) support (BLK_DEV_INITRD) [Y/n/?] y
+  Initramfs source file(s) (INITRAMFS_SOURCE) []
+  Support initial ramdisks compressed using gzip (RD_GZIP) [Y/n/?] y
+  Support initial ramdisks compressed using bzip2 (RD_BZIP2) [Y/n/?] y
+  Support initial ramdisks compressed using LZMA (RD_LZMA) [Y/n/?] y
+  Support initial ramdisks compressed using XZ (RD_XZ) [Y/n/?] y
+  Support initial ramdisks compressed using LZO (RD_LZO) [Y/n/?] y
+  Support initial ramdisks compressed using LZ4 (RD_LZ4) [Y/n/?] y
+Optimize for size (CC_OPTIMIZE_FOR_SIZE) [N/y/?] n
+*
+* Configure standard kernel features (expert users)
+*
+Configure standard kernel features (expert users) (EXPERT) [Y/n/?] y
+  Enable 16-bit UID system calls (UID16) [Y/n/?] y
+  Multiple users, groups and capabilities support (MULTIUSER) [Y/n/?] (NEW)
+  sgetmask/ssetmask syscalls support (SGETMASK_SYSCALL) [Y/n/?] y
+  Sysfs syscall support (SYSFS_SYSCALL) [Y/n/?] y
+  Sysctl syscall support (SYSCTL_SYSCALL) [N/y/?] n
+  Load all symbols for debugging/ksymoops (KALLSYMS) [Y/?] y
+    Include all symbols in kallsyms (KALLSYMS_ALL) [N/y/?] n
+Enable support for printk (PRINTK) [Y/n/?] y
+BUG() support (BUG) [Y/n/?] y
+Enable ELF core dumps (ELF_CORE) [Y/n/?] y
+Enable PC-Speaker support (PCSPKR_PLATFORM) [Y/n/?] y
+Enable full-sized data structures for core (BASE_FULL) [Y/n/?] y
+Enable futex support (FUTEX) [Y/n/?] y
+Enable eventpoll support (EPOLL) [Y/n/?] y
+Enable signalfd() system call (SIGNALFD) [Y/n/?] y
+Enable timerfd() system call (TIMERFD) [Y/n/?] y
+Enable eventfd() system call (EVENTFD) [Y/?] y
+Enable bpf() system call (BPF_SYSCALL) [N/y/?] (NEW)
+Use full shmem filesystem (SHMEM) [Y/?] y
+Enable AIO support (AIO) [Y/n/?] y
+Enable madvise/fadvise syscalls (ADVISE_SYSCALLS) [Y/n/?] (NEW)
+Enable userfaultfd() system call (USERFAULTFD) [N/y/?] (NEW)
+Enable PCI quirk workarounds (PCI_QUIRKS) [Y/n/?] y
+Enable membarrier() system call (MEMBARRIER) [Y/n/?] (NEW)
+Embedded system (EMBEDDED) [N/y/?] n
+*
+* Kernel Performance Events And Counters
+*
+Kernel performance events and counters (PERF_EVENTS) [Y/?] y
+  Debug: use vmalloc to back perf mmap() buffers (DEBUG_PERF_USE_VMALLOC) [N/y/?] n
+Enable VM event counters for /proc/vmstat (VM_EVENT_COUNTERS) [Y/n/?] y
+Disable heap randomization (COMPAT_BRK) [N/y/?] n
+Choose SLAB allocator
+> 1. SLAB (SLAB)
+  2. SLUB (Unqueued Allocator) (SLUB)
+  3. SLOB (Simple Allocator) (SLOB)
+choice[1-3?]: 1
+Profiling support (PROFILING) [Y/n/?] y
+OProfile system profiling (OPROFILE) [M/n/y/?] m
+  OProfile multiplexing support (EXPERIMENTAL) (OPROFILE_EVENT_MULTIPLEX) [N/y/?] n
+Kprobes (KPROBES) [Y/n/?] y
+Optimize very unlikely/likely branches (JUMP_LABEL) [Y/n/?] y
+  Static key selftest (STATIC_KEYS_SELFTEST) [N/y/?] (NEW)
+Stack Protector buffer overflow detection
+  1. None (CC_STACKPROTECTOR_NONE)
+> 2. Regular (CC_STACKPROTECTOR_REGULAR)
+  3. Strong (CC_STACKPROTECTOR_STRONG)
+choice[1-3?]: 2
+Number of bits to use for ASLR of mmap base address (ARCH_MMAP_RND_BITS) [28] (NEW)
+Number of bits to use for ASLR of mmap base address for compatible applications (ARCH_MMAP_RND_COMPAT_BITS) [8] (NEW)
+*
+* GCOV-based kernel profiling
+*
+Enable gcov-based kernel profiling (GCOV_KERNEL) [N/y/?] n
+*
+* Enable loadable module support
+*
+Enable loadable module support (MODULES) [Y/n/?] y
+  Forced module loading (MODULE_FORCE_LOAD) [Y/n/?] y
+  Module unloading (MODULE_UNLOAD) [Y/n/?] y
+    Forced module unloading (MODULE_FORCE_UNLOAD) [Y/n/?] y
+  Module versioning support (MODVERSIONS) [Y/n/?] y
+  Source checksum for all modules (MODULE_SRCVERSION_ALL) [N/y/?] n
+  Module signature verification (MODULE_SIG) [N/y/?] n
+  Compress modules on installation (MODULE_COMPRESS) [N/y/?] (NEW)
+*
+* Processor type and features
+*
+DMA memory allocation support (ZONE_DMA) [Y/n/?] y
+Symmetric multi-processing support (SMP) [Y/n/?] y
+Support x2apic (X86_X2APIC) [Y/n/?] y
+Enable MPS table (X86_MPPARSE) [Y/n/?] y
+Support for extended (non-PC) x86 platforms (X86_EXTENDED_PLATFORM) [N/y/?] n
+Intel Low Power Subsystem Support (X86_INTEL_LPSS) [Y/n/?] y
+AMD ACPI2Platform devices support (X86_AMD_PLATFORM_DEVICE) [N/y/?] (NEW)
+Intel SoC IOSF Sideband support for SoC platforms (IOSF_MBI) [Y/?] y
+  Enable IOSF sideband access through debugfs (IOSF_MBI_DEBUG) [N/y/?] (NEW)
+Single-depth WCHAN output (SCHED_OMIT_FRAME_POINTER) [Y/n/?] y
+*
+* Linux guest support
+*
+Linux guest support (HYPERVISOR_GUEST) [Y/n/?] y
+  Enable paravirtualization code (PARAVIRT) [Y/n/?] y
+    paravirt-ops debugging (PARAVIRT_DEBUG) [N/y/?] n
+    Paravirtualization layer for spinlocks (PARAVIRT_SPINLOCKS) [N/y/?] n
+    Xen guest support (XEN) [Y/n/?] y
+      Limit Xen pv-domain memory to 512GB (XEN_512GB) [Y/n/?] (NEW)
+      Enable Xen debug and tuning parameters in debugfs (XEN_DEBUG_FS) [N/y/?] n
+      Support for running as a PVH guest (XEN_PVH) [Y/n] y
+    KVM Guest support (including kvmclock) (KVM_GUEST) [Y/n/?] y
+      Enable debug information for KVM Guests in debugfs (KVM_DEBUG_FS) [N/y/?] n
+    Paravirtual steal time accounting (PARAVIRT_TIME_ACCOUNTING) [N/y/?] n
+Processor family
+  1. Opteron/Athlon64/Hammer/K8 (MK8)
+  2. Intel P4 / older Netburst based Xeon (MPSC)
+  3. Core 2/newer Xeon (MCORE2)
+  4. Intel Atom (MATOM)
+> 5. Generic-x86-64 (GENERIC_CPU)
+choice[1-5?]: 5
+*
+* Supported processor vendors
+*
+Supported processor vendors (PROCESSOR_SELECT) [N/y/?] n
+Enable DMI scanning (DMI) [Y/n/?] y
+Old AMD GART IOMMU support (GART_IOMMU) [Y/n/?] y
+IBM Calgary IOMMU support (CALGARY_IOMMU) [Y/n/?] y
+  Should Calgary be enabled by default? (CALGARY_IOMMU_ENABLED_BY_DEFAULT) [Y/n/?] y
+Enable Maximum number of SMP Processors and NUMA Nodes (MAXSMP) [N/y/?] n
+Maximum number of CPUs (NR_CPUS) [512] 512
+SMT (Hyperthreading) scheduler support (SCHED_SMT) [Y/n/?] y
+Multi-core scheduler support (SCHED_MC) [Y/n/?] y
+Preemption Model
+  1. No Forced Preemption (Server) (PREEMPT_NONE)
+> 2. Voluntary Kernel Preemption (Desktop) (PREEMPT_VOLUNTARY)
+  3. Preemptible Kernel (Low-Latency Desktop) (PREEMPT)
+choice[1-3]: 2
+Reroute for broken boot IRQs (X86_REROUTE_FOR_BROKEN_BOOT_IRQS) [Y/n/?] y
+Machine Check / overheating reporting (X86_MCE) [Y/n/?] y
+  Intel MCE features (X86_MCE_INTEL) [Y/n/?] y
+  AMD MCE features (X86_MCE_AMD) [Y/n/?] y
+Machine check injector support (X86_MCE_INJECT) [M/n/y/?] m
+Enable support for 16-bit segments (X86_16BIT) [Y/n/?] y
+Enable vsyscall emulation (X86_VSYSCALL_EMULATION) [Y/n/?] (NEW)
+Dell i8k legacy laptop support (I8K) [M/n/y/?] m
+CPU microcode loading support (MICROCODE) [Y/n/?] y
+  Intel microcode loading support (MICROCODE_INTEL) [Y/n/?] y
+  AMD microcode loading support (MICROCODE_AMD) [Y/n/?] y
+AMD Processor Power Reporting Mechanism (PERF_EVENTS_AMD_POWER) [N/m/y/?] (NEW)
+/dev/cpu/*/msr - Model-specific register support (X86_MSR) [M/n/y/?] m
+/dev/cpu/*/cpuid - CPU information support (X86_CPUID) [M/n/y/?] m
+Numa Memory Allocation and Scheduler Support (NUMA) [Y/n/?] y
+  Old style AMD Opteron NUMA detection (AMD_NUMA) [Y/n/?] y
+  ACPI NUMA detection (X86_64_ACPI_NUMA) [Y/n/?] y
+  NUMA emulation (NUMA_EMU) [Y/n/?] y
+Maximum NUMA Nodes (as a power of 2) (NODES_SHIFT) [6] 6
+Enable sysfs memory/probe interface (ARCH_MEMORY_PROBE) [N/y/?] n
+Memory model
+> 1. Sparse Memory (SPARSEMEM_MANUAL)
+choice[1]: 1
+Sparse Memory virtual memmap (SPARSEMEM_VMEMMAP) [Y/n/?] y
+Enable to assign a node which has only movable memory (MOVABLE_NODE) [N/y/?] n
+Allow for memory hot-add (MEMORY_HOTPLUG) [Y/n] y
+  Allow for memory hot remove (MEMORY_HOTREMOVE) [Y/n] y
+Allow for balloon memory compaction/migration (BALLOON_COMPACTION) [Y/n/?] y
+Allow for memory compaction (COMPACTION) [Y/?] y
+  Page migration (MIGRATION) [Y/?] y
+Enable bounce buffers (BOUNCE) [Y/n/?] y
+Enable KSM for page merging (KSM) [Y/n/?] y
+Low address space to protect from user allocation (DEFAULT_MMAP_MIN_ADDR) [65536] 65536
+Enable recovery from hardware memory errors (MEMORY_FAILURE) [Y/n/?] y
+  HWPoison pages injector (HWPOISON_INJECT) [M/n/y] m
+Transparent Hugepage Support (TRANSPARENT_HUGEPAGE) [Y/n/?] y
+  Transparent Hugepage Support sysfs defaults
+    1. always (TRANSPARENT_HUGEPAGE_ALWAYS)
+  > 2. madvise (TRANSPARENT_HUGEPAGE_MADVISE)
+  choice[1-2?]: 2
+Enable cleancache driver to cache clean pages if tmem is present (CLEANCACHE) [N/y/?] n
+Enable frontswap to cache swap pages if tmem is present (FRONTSWAP) [Y/n/?] y
+Contiguous Memory Allocator (CMA) [N/y/?] n
+Track memory changes (MEM_SOFT_DIRTY) [Y/n/?] y
+Compressed cache for swap pages (EXPERIMENTAL) (ZSWAP) [Y/n/?] y
+Common API for compressed memory storage (ZPOOL) [Y/?] (NEW) y
+Low density storage for compressed pages (ZBUD) [Y/n/m/?] y
+Memory allocator for compressed pages (ZSMALLOC) [Y/n/m/?] y
+  Use page table mapping to access object in zsmalloc (PGTABLE_MAPPING) [N/y/?] n
+  Export zsmalloc statistics (ZSMALLOC_STAT) [N/y/?] (NEW)
+Defer initialisation of struct pages to kthreads (DEFERRED_STRUCT_PAGE_INIT) [N/y/?] (NEW)
+Enable idle page tracking (IDLE_PAGE_TRACKING) [N/y/?] (NEW)
+Device memory (pmem, etc...) hotplug support (ZONE_DEVICE) [N/y/?] (NEW)
+Support non-standard NVDIMMs and ADR protected memory (X86_PMEM_LEGACY) [N/m/y/?] (NEW)
+Check for low memory corruption (X86_CHECK_BIOS_CORRUPTION) [N/y/?] n
+Amount of low memory, in kilobytes, to reserve for the BIOS (X86_RESERVE_LOW) [64] 64
+MTRR (Memory Type Range Register) support (MTRR) [Y/n/?] y
+  MTRR cleanup support (MTRR_SANITIZER) [Y/n/?] y
+    MTRR cleanup enable value (0-1) (MTRR_SANITIZER_ENABLE_DEFAULT) [0] 0
+    MTRR cleanup spare reg num (0-7) (MTRR_SANITIZER_SPARE_REG_NR_DEFAULT) [1] 1
+  x86 PAT support (X86_PAT) [Y/n/?] y
+x86 architectural random number generator (ARCH_RANDOM) [Y/n/?] y
+Supervisor Mode Access Prevention (X86_SMAP) [Y/n/?] y
+Intel MPX (Memory Protection Extensions) (X86_INTEL_MPX) [N/y/?] (NEW)
+Intel Memory Protection Keys (X86_INTEL_MEMORY_PROTECTION_KEYS) [Y/n/?] (NEW)
+EFI runtime service support (EFI) [Y/n/?] y
+  EFI stub support (EFI_STUB) [Y/n/?] y
+    EFI mixed-mode support (EFI_MIXED) [Y/n/?] y
+Enable seccomp to safely compute untrusted bytecode (SECCOMP) [Y/n/?] y
+Timer frequency
+  1. 100 HZ (HZ_100)
+> 2. 250 HZ (HZ_250)
+  3. 300 HZ (HZ_300)
+  4. 1000 HZ (HZ_1000)
+choice[1-4?]: 2
+kexec system call (KEXEC) [Y/n/?] y
+kernel crash dumps (CRASH_DUMP) [Y/n/?] y
+kexec jump (KEXEC_JUMP) [N/y/?] n
+Physical address where the kernel is loaded (PHYSICAL_START) [0x1000000] 0x1000000
+Build a relocatable kernel (RELOCATABLE) [Y/?] y
+  Randomize the address of the kernel image (RANDOMIZE_BASE) [N/y/?] n
+Alignment value to which kernel should be aligned (PHYSICAL_ALIGN) [0x200000] 0x200000
+Support for hot-pluggable CPUs (HOTPLUG_CPU) [Y/?] y
+  Set default setting of cpu0_hotpluggable (BOOTPARAM_HOTPLUG_CPU0) [N/y/?] n
+  Debug CPU0 hotplug (DEBUG_HOTPLUG_CPU0) [N/y/?] n
+Disable the 32-bit vDSO (needed for glibc 2.3.3) (COMPAT_VDSO) [N/y/?] n
+vsyscall table for legacy applications
+  1. Native (LEGACY_VSYSCALL_NATIVE) (NEW)
+> 2. Emulate (LEGACY_VSYSCALL_EMULATE) (NEW)
+  3. None (LEGACY_VSYSCALL_NONE) (NEW)
+choice[1-3?]:
+Built-in kernel command line (CMDLINE_BOOL) [N/y/?] n
+Enable the LDT (local descriptor table) (MODIFY_LDT_SYSCALL) [Y/n/?] (NEW)
+*
+* Power management and ACPI options
+*
+Suspend to RAM and standby (SUSPEND) [Y/n/?] y
+  Skip kernel's sys_sync() on suspend to RAM/standby (SUSPEND_SKIP_SYNC) [N/y/?] (NEW)
+Hibernation (aka 'suspend to disk') (HIBERNATION) [Y/n/?] y
+Default resume partition (PM_STD_PARTITION) []
+Opportunistic sleep (PM_AUTOSLEEP) [N/y/?] n
+User space wakeup sources interface (PM_WAKELOCKS) [N/y/?] n
+Device power management core functionality (PM) [Y/?] y
+  Power Management Debug Support (PM_DEBUG) [Y/n/?] y
+    Extra PM attributes in sysfs for low-level debugging/testing (PM_ADVANCED_DEBUG) [Y/n/?] y
+    Test suspend/resume and wakealarm during bootup (PM_TEST_SUSPEND) [N/y/?] n
+    Device suspend/resume watchdog (DPM_WATCHDOG) [N/y/?] n
+Suspend/resume event tracing (PM_TRACE_RTC) [N/y/?] n
+Enable workqueue power-efficient mode by default (WQ_POWER_EFFICIENT_DEFAULT) [N/y/?] n
+*
+* ACPI (Advanced Configuration and Power Interface) Support
+*
+ACPI (Advanced Configuration and Power Interface) Support (ACPI) [Y/n/?] y
+  AML debugger interface (ACPI_DEBUGGER) [N/y/?] (NEW)
+  Deprecated power /proc/acpi directories (ACPI_PROCFS_POWER) [N/y/?] n
+  Allow supported ACPI revision to be overriden (ACPI_REV_OVERRIDE_POSSIBLE) [Y/n/?] (NEW)
+  EC read/write access through /sys/kernel/debug/ec (ACPI_EC_DEBUGFS) [N/m/y/?] n
+  AC Adapter (ACPI_AC) [M/n/y/?] m
+  Battery (ACPI_BATTERY) [M/n/y/?] m
+  Button (ACPI_BUTTON) [M/y/?] m
+  Video (ACPI_VIDEO) [M/y/?] m
+  Fan (ACPI_FAN) [M/n/y/?] m
+  Dock (ACPI_DOCK) [Y/n/?] y
+  Processor (ACPI_PROCESSOR) [M/n/y/?] m
+  IPMI (ACPI_IPMI) [M/n/?] m
+  Processor Aggregator (ACPI_PROCESSOR_AGGREGATOR) [M/n/?] m
+  Thermal Zone (ACPI_THERMAL) [M/n/?] m
+  NUMA support (ACPI_NUMA) [Y] y
+  ACPI tables override via initrd (ACPI_INITRD_TABLE_OVERRIDE) [Y/n/?] y
+  Debug Statements (ACPI_DEBUG) [N/y/?] n
+  PCI slot detection driver (ACPI_PCI_SLOT) [Y/n/?] y
+  Power Management Timer Support (X86_PM_TIMER) [Y/n/?] y
+  Container and Module Devices (ACPI_CONTAINER) [Y/?] y
+  Memory Hotplug (ACPI_HOTPLUG_MEMORY) [Y/n/?] y
+  Smart Battery System (ACPI_SBS) [M/n/y/?] m
+  Hardware Error Device (ACPI_HED) [Y/?] y
+  Allow ACPI methods to be inserted/replaced at run time (ACPI_CUSTOM_METHOD) [N/m/y/?] n
+  Boottime Graphics Resource Table support (ACPI_BGRT) [Y/n/?] y
+  Hardware-reduced ACPI support only (ACPI_REDUCED_HARDWARE_ONLY) [N/y/?] n
+  ACPI NVDIMM Firmware Interface Table (NFIT) (ACPI_NFIT) [N/m/y/?] (NEW)
+  ACPI Platform Error Interface (APEI) (ACPI_APEI) [Y/n/?] y
+    APEI Generic Hardware Error Source (ACPI_APEI_GHES) [Y/n/?] y
+    APEI PCIe AER logging/recovering support (ACPI_APEI_PCIEAER) [Y/n/?] y
+    APEI memory error recovering support (ACPI_APEI_MEMORY_FAILURE) [Y/n/?] y
+    APEI Error INJection (EINJ) (ACPI_APEI_EINJ) [N/m/y/?] n
+    APEI Error Record Serialization Table (ERST) Debug Support (ACPI_APEI_ERST_DEBUG) [N/m/y/?] n
+  Extended Error Log support (ACPI_EXTLOG) [Y/n/m/?] y
+  *
+  * PMIC (Power Management Integrated Circuit) operation region support
+  *
+  PMIC (Power Management Integrated Circuit) operation region support (PMIC_OPREGION) [N/y/?] (NEW)
+*
+* SFI (Simple Firmware Interface) Support
+*
+SFI (Simple Firmware Interface) Support (SFI) [Y/n/?] y
+*
+* CPU Frequency scaling
+*
+CPU Frequency scaling (CPU_FREQ) [Y/n/?] y
+  CPU frequency translation statistics (CPU_FREQ_STAT) [M/n/y/?] m
+    CPU frequency translation statistics details (CPU_FREQ_STAT_DETAILS) [N/y/?] n
+  Default CPUFreq governor
+    1. performance (CPU_FREQ_DEFAULT_GOV_PERFORMANCE)
+    2. powersave (CPU_FREQ_DEFAULT_GOV_POWERSAVE)
+    3. userspace (CPU_FREQ_DEFAULT_GOV_USERSPACE)
+  > 4. ondemand (CPU_FREQ_DEFAULT_GOV_ONDEMAND)
+    5. conservative (CPU_FREQ_DEFAULT_GOV_CONSERVATIVE)
+  choice[1-5?]: 4
+  'performance' governor (CPU_FREQ_GOV_PERFORMANCE) [Y/?] y
+  'powersave' governor (CPU_FREQ_GOV_POWERSAVE) [M/n/y/?] m
+  'userspace' governor for userspace frequency scaling (CPU_FREQ_GOV_USERSPACE) [M/n/y/?] m
+  'ondemand' cpufreq policy governor (CPU_FREQ_GOV_ONDEMAND) [Y/?] y
+  'conservative' cpufreq governor (CPU_FREQ_GOV_CONSERVATIVE) [M/n/y/?] m
+  *
+  * CPU frequency scaling drivers
+  *
+  Intel P state control (X86_INTEL_PSTATE) [Y/n/?] y
+  Processor Clocking Control interface driver (X86_PCC_CPUFREQ) [M/n/?] m
+  ACPI Processor P-States driver (X86_ACPI_CPUFREQ) [M/n/?] m
+    Legacy cpb sysfs knob support for AMD CPUs (X86_ACPI_CPUFREQ_CPB) [Y/n/?] y
+  AMD Opteron/Athlon64 PowerNow! (X86_POWERNOW_K8) [M/n/?] m
+  AMD frequency sensitivity feedback powersave bias (X86_AMD_FREQ_SENSITIVITY) [M/n/?] m
+  Intel Enhanced SpeedStep (deprecated) (X86_SPEEDSTEP_CENTRINO) [M/n/?] m
+  Intel Pentium 4 clock modulation (X86_P4_CLOCKMOD) [M/n/y/?] m
+  *
+  * shared options
+  *
+*
+* CPU Idle
+*
+CPU idle PM support (CPU_IDLE) [Y/?] y
+  Ladder governor (for periodic timer tick) (CPU_IDLE_GOV_LADDER) [Y/n] y
+  Menu governor (for tickless system) (CPU_IDLE_GOV_MENU) [Y] y
+Cpuidle Driver for Intel Processors (INTEL_IDLE) [Y/n/?] y
+*
+* Memory power savings
+*
+Intel chipset idle memory power saving driver (I7300_IDLE) [M/n/y/?] m
+*
+* Bus options (PCI etc.)
+*
+PCI support (PCI) [Y/n/?] y
+  Support mmconfig PCI config space access (PCI_MMCONFIG) [Y/n] y
+  Read CNB20LE Host Bridge Windows (PCI_CNB20LE_QUIRK) [N/y/?] n
+  PCI Express Port Bus support (PCIEPORTBUS) [Y/n/?] y
+    PCI Express Hotplug driver (HOTPLUG_PCI_PCIE) [Y/n/?] y
+    Root Port Advanced Error Reporting support (PCIEAER) [Y/n/?] y
+      PCI Express ECRC settings control (PCIE_ECRC) [N/y/?] n
+      PCIe AER error injector support (PCIEAER_INJECT) [M/n/y/?] m
+    PCI Express ASPM control (PCIEASPM) [Y/n/?] y
+      Debug PCI Express ASPM (PCIEASPM_DEBUG) [N/y/?] n
+      Default ASPM policy
+      > 1. BIOS default (PCIEASPM_DEFAULT)
+        2. Powersave (PCIEASPM_POWERSAVE)
+        3. Performance (PCIEASPM_PERFORMANCE)
+      choice[1-3]: 1
+  Message Signaled Interrupts (MSI and MSI-X) (PCI_MSI) [Y/?] y
+  PCI Debugging (PCI_DEBUG) [N/y/?] n
+  Enable PCI resource re-allocation detection (PCI_REALLOC_ENABLE_AUTO) [Y/n/?] y
+  PCI Stub driver (PCI_STUB) [M/n/y/?] m
+  Xen PCI Frontend (XEN_PCIDEV_FRONTEND) [M/n/y/?] m
+  Interrupts on hypertransport devices (HT_IRQ) [Y/n/?] y
+PCI IOV support (PCI_IOV) [Y/n/?] y
+PCI PRI support (PCI_PRI) [Y/?] y
+PCI PASID support (PCI_PASID) [Y/?] y
+Hyper-V PCI Frontend (PCI_HYPERV) [N/m/?] (NEW)
+*
+* Support for PCI Hotplug
+*
+Support for PCI Hotplug (HOTPLUG_PCI) [Y/n/?] y
+  ACPI PCI Hotplug driver (HOTPLUG_PCI_ACPI) [Y/n/?] y
+    ACPI PCI Hotplug driver IBM extensions (HOTPLUG_PCI_ACPI_IBM) [M/n/y/?] m
+  CompactPCI Hotplug driver (HOTPLUG_PCI_CPCI) [Y/n/?] y
+    Ziatech ZT5550 CompactPCI Hotplug driver (HOTPLUG_PCI_CPCI_ZT5550) [M/n/y/?] m
+    Generic port I/O CompactPCI Hotplug driver (HOTPLUG_PCI_CPCI_GENERIC) [M/n/y/?] m
+  SHPC PCI Hotplug driver (HOTPLUG_PCI_SHPC) [M/n/y/?] m
+*
+* PCI host controller drivers
+*
+Platform bus based DesignWare PCIe Controller (PCIE_DW_PLAT) [N/y/?] (NEW)
+ISA-style DMA support (ISA_DMA_API) [Y/n/?] y
+*
+* PCCard (PCMCIA/CardBus) support
+*
+PCCard (PCMCIA/CardBus) support (PCCARD) [M/n/y/?] m
+  16-bit PCMCIA support (PCMCIA) [M/n/?] m
+    Load CIS updates from userspace (PCMCIA_LOAD_CIS) [Y/n/?] y
+  32-bit CardBus support (CARDBUS) [Y/n/?] y
+  *
+  * PC-card bridges
+  *
+  CardBus yenta-compatible bridge support (YENTA) [M/n/?] m
+    Special initialization for O2Micro bridges (YENTA_O2) [Y/n] y
+    Special initialization for Ricoh bridges (YENTA_RICOH) [Y/n] y
+    Special initialization for TI and EnE bridges (YENTA_TI) [Y/n] y
+      Auto-tune EnE bridges for CB cards (YENTA_ENE_TUNE) [Y/n] y
+    Special initialization for Toshiba ToPIC bridges (YENTA_TOSHIBA) [Y/n] y
+  Cirrus PD6729 compatible bridge support (PD6729) [M/n/?] m
+  i82092 compatible bridge support (I82092) [M/n/?] m
+RapidIO support (RAPIDIO) [N/m/y/?] n
+Mark VGA/VBE/EFI FB as generic system framebuffer (X86_SYSFB) [Y/n/?] y
+*
+* Linux/x86_64 4.6.4 Kernel Configuration
+*
+*
+* General setup
+*
+Cross-compiler tool prefix (CROSS_COMPILE) []
+Compile also drivers which will not load (COMPILE_TEST) [N/y/?] n
+Local version - append to kernel release (LOCALVERSION) []
+Automatically append version information to the version string (LOCALVERSION_AUTO) [N/y/?] n
+Kernel compression mode
+  1. Gzip (KERNEL_GZIP)
+  2. Bzip2 (KERNEL_BZIP2)
+  3. LZMA (KERNEL_LZMA)
+> 4. XZ (KERNEL_XZ)
+  5. LZO (KERNEL_LZO)
+  6. LZ4 (KERNEL_LZ4)
+choice[1-6?]: 4
+Default hostname (DEFAULT_HOSTNAME) [(none)] (none)
+Support for paging of anonymous memory (swap) (SWAP) [Y/n/?] y
+System V IPC (SYSVIPC) [Y/n/?] y
+POSIX Message Queues (POSIX_MQUEUE) [Y/n/?] y
+Enable process_vm_readv/writev syscalls (CROSS_MEMORY_ATTACH) [Y/n/?] y
+open by fhandle syscalls (FHANDLE) [Y/n/?] y
+uselib syscall (USELIB) [Y/n/?] y
+Auditing support (AUDIT) [Y/?] y
+*
+* IRQ subsystem
+*
+Expose hardware/virtual IRQ mapping via debugfs (IRQ_DOMAIN_DEBUG) [N/y/?] n
+*
+* Timers subsystem
+*
+Timer tick handling
+  1. Periodic timer ticks (constant rate, no dynticks) (HZ_PERIODIC)
+> 2. Idle dynticks system (tickless idle) (NO_HZ_IDLE)
+  3. Full dynticks system (tickless) (NO_HZ_FULL)
+choice[1-3]: 2
+Old Idle dynticks config (NO_HZ) [N/y/?] n
+High Resolution Timer Support (HIGH_RES_TIMERS) [Y/n/?] y
+*
+* CPU/Task time and stats accounting
+*
+Cputime accounting
+> 1. Simple tick based cputime accounting (TICK_CPU_ACCOUNTING)
+  2. Full dynticks CPU time accounting (VIRT_CPU_ACCOUNTING_GEN)
+  3. Fine granularity task level IRQ time accounting (IRQ_TIME_ACCOUNTING)
+choice[1-3]: 1
+BSD Process Accounting (BSD_PROCESS_ACCT) [Y/n/?] y
+  BSD Process Accounting version 3 file format (BSD_PROCESS_ACCT_V3) [Y/n/?] y
+Export task/process statistics through netlink (TASKSTATS) [Y/?] y
+  Enable per-task delay accounting (TASK_DELAY_ACCT) [Y/?] y
+  Enable extended accounting over taskstats (TASK_XACCT) [Y/n/?] y
+    Enable per-task storage I/O accounting (TASK_IO_ACCOUNTING) [Y/n/?] y
+*
+* RCU Subsystem
+*
+Make expert-level adjustments to RCU configuration (RCU_EXPERT) [N/y/?] n
+Kernel .config support (IKCONFIG) [N/m/y/?] n
+Kernel log buffer size (16 => 64KB, 17 => 128KB) (LOG_BUF_SHIFT) [17] 17
+CPU kernel log buffer size contribution (13 => 8 KB, 17 => 128KB) (LOG_CPU_MAX_BUF_SHIFT) [12] 12
+Memory placement aware NUMA scheduler (NUMA_BALANCING) [Y/n/?] y
+  Automatically enable NUMA aware memory/task placement (NUMA_BALANCING_DEFAULT_ENABLED) [N/y/?] n
+*
+* Control Group support
+*
+Control Group support (CGROUPS) [Y/?] y
+  Memory controller (MEMCG) [Y/n/?] y
+    Swap controller (MEMCG_SWAP) [Y/n/?] y
+      Swap controller enabled by default (MEMCG_SWAP_ENABLED) [N/y/?] n
+  IO controller (BLK_CGROUP) [Y/n/?] y
+    IO controller debugging (DEBUG_BLK_CGROUP) [N/y/?] n
+  *
+  * CPU controller
+  *
+  CPU controller (CGROUP_SCHED) [Y/?] y
+    Group scheduling for SCHED_OTHER (FAIR_GROUP_SCHED) [Y] y
+      CPU bandwidth provisioning for FAIR_GROUP_SCHED (CFS_BANDWIDTH) [N/y/?] n
+    Group scheduling for SCHED_RR/FIFO (RT_GROUP_SCHED) [N/y/?] n
+  PIDs controller (CGROUP_PIDS) [N/y/?] n
+  Freezer controller (CGROUP_FREEZER) [Y/n/?] y
+  HugeTLB controller (CGROUP_HUGETLB) [N/y/?] n
+  Cpuset controller (CPUSETS) [Y/n/?] y
+    Include legacy /proc/<pid>/cpuset file (PROC_PID_CPUSET) [Y/n] y
+  Device controller (CGROUP_DEVICE) [Y/n/?] y
+  Simple CPU accounting controller (CGROUP_CPUACCT) [Y/n/?] y
+  Perf controller (CGROUP_PERF) [Y/n/?] y
+  Example controller (CGROUP_DEBUG) [N/y/?] n
+Checkpoint/restore support (CHECKPOINT_RESTORE) [Y/n/?] y
+*
+* Namespaces support
+*
+Namespaces support (NAMESPACES) [Y/n/?] y
+  UTS namespace (UTS_NS) [Y/n/?] y
+  IPC namespace (IPC_NS) [Y/n/?] y
+  User namespace (USER_NS) [Y/n/?] y
+  PID Namespaces (PID_NS) [Y/n/?] y
+  Network namespace (NET_NS) [Y/n/?] y
+Automatic process group scheduling (SCHED_AUTOGROUP) [Y/n/?] y
+Enable deprecated sysfs features to support old userspace tools (SYSFS_DEPRECATED) [N/y/?] n
+Kernel->user space relay support (formerly relayfs) (RELAY) [Y/?] y
+Initial RAM filesystem and RAM disk (initramfs/initrd) support (BLK_DEV_INITRD) [Y/n/?] y
+  Initramfs source file(s) (INITRAMFS_SOURCE) []
+  Support initial ramdisks compressed using gzip (RD_GZIP) [Y/n/?] y
+  Support initial ramdisks compressed using bzip2 (RD_BZIP2) [Y/n/?] y
+  Support initial ramdisks compressed using LZMA (RD_LZMA) [Y/n/?] y
+  Support initial ramdisks compressed using XZ (RD_XZ) [Y/n/?] y
+  Support initial ramdisks compressed using LZO (RD_LZO) [Y/n/?] y
+  Support initial ramdisks compressed using LZ4 (RD_LZ4) [Y/n/?] y
+Optimize for size (CC_OPTIMIZE_FOR_SIZE) [N/y/?] n
+*
+* Configure standard kernel features (expert users)
+*
+Configure standard kernel features (expert users) (EXPERT) [Y/n/?] y
+  Enable 16-bit UID system calls (UID16) [Y/n/?] y
+  Multiple users, groups and capabilities support (MULTIUSER) [Y/n/?] y
+  sgetmask/ssetmask syscalls support (SGETMASK_SYSCALL) [Y/n/?] y
+  Sysfs syscall support (SYSFS_SYSCALL) [Y/n/?] y
+  Sysctl syscall support (SYSCTL_SYSCALL) [N/y/?] n
+  Load all symbols for debugging/ksymoops (KALLSYMS) [Y/?] y
+    Include all symbols in kallsyms (KALLSYMS_ALL) [N/y/?] n
+Enable support for printk (PRINTK) [Y/n/?] y
+BUG() support (BUG) [Y/n/?] y
+Enable ELF core dumps (ELF_CORE) [Y/n/?] y
+Enable PC-Speaker support (PCSPKR_PLATFORM) [Y/n/?] y
+Enable full-sized data structures for core (BASE_FULL) [Y/n/?] y
+Enable futex support (FUTEX) [Y/n/?] y
+Enable eventpoll support (EPOLL) [Y/n/?] y
+Enable signalfd() system call (SIGNALFD) [Y/n/?] y
+Enable timerfd() system call (TIMERFD) [Y/n/?] y
+Enable eventfd() system call (EVENTFD) [Y/?] y
+Enable bpf() system call (BPF_SYSCALL) [N/y/?] n
+Use full shmem filesystem (SHMEM) [Y/?] y
+Enable AIO support (AIO) [Y/n/?] y
+Enable madvise/fadvise syscalls (ADVISE_SYSCALLS) [Y/n/?] y
+Enable userfaultfd() system call (USERFAULTFD) [N/y/?] n
+Enable PCI quirk workarounds (PCI_QUIRKS) [Y/n/?] y
+Enable membarrier() system call (MEMBARRIER) [Y/n/?] y
+Embedded system (EMBEDDED) [N/y/?] n
+*
+* Kernel Performance Events And Counters
+*
+Kernel performance events and counters (PERF_EVENTS) [Y/?] y
+  Debug: use vmalloc to back perf mmap() buffers (DEBUG_PERF_USE_VMALLOC) [N/y/?] n
+Enable VM event counters for /proc/vmstat (VM_EVENT_COUNTERS) [Y/n/?] y
+Disable heap randomization (COMPAT_BRK) [N/y/?] n
+Choose SLAB allocator
+> 1. SLAB (SLAB)
+  2. SLUB (Unqueued Allocator) (SLUB)
+  3. SLOB (Simple Allocator) (SLOB)
+choice[1-3?]: 1
+Profiling support (PROFILING) [Y/n/?] y
+OProfile system profiling (OPROFILE) [M/n/y/?] m
+  OProfile multiplexing support (EXPERIMENTAL) (OPROFILE_EVENT_MULTIPLEX) [N/y/?] n
+Kprobes (KPROBES) [Y/n/?] y
+Optimize very unlikely/likely branches (JUMP_LABEL) [Y/n/?] y
+  Static key selftest (STATIC_KEYS_SELFTEST) [N/y/?] n
+Stack Protector buffer overflow detection
+  1. None (CC_STACKPROTECTOR_NONE)
+> 2. Regular (CC_STACKPROTECTOR_REGULAR)
+  3. Strong (CC_STACKPROTECTOR_STRONG)
+choice[1-3?]: 2
+Number of bits to use for ASLR of mmap base address (ARCH_MMAP_RND_BITS) [28] 28
+Number of bits to use for ASLR of mmap base address for compatible applications (ARCH_MMAP_RND_COMPAT_BITS) [8] 8
+*
+* GCOV-based kernel profiling
+*
+Enable gcov-based kernel profiling (GCOV_KERNEL) [N/y/?] n
+*
+* Enable loadable module support
+*
+Enable loadable module support (MODULES) [Y/n/?] y
+  Forced module loading (MODULE_FORCE_LOAD) [Y/n/?] y
+  Module unloading (MODULE_UNLOAD) [Y/n/?] y
+    Forced module unloading (MODULE_FORCE_UNLOAD) [Y/n/?] y
+  Module versioning support (MODVERSIONS) [Y/n/?] y
+  Source checksum for all modules (MODULE_SRCVERSION_ALL) [N/y/?] n
+  Module signature verification (MODULE_SIG) [N/y/?] n
+  Compress modules on installation (MODULE_COMPRESS) [N/y/?] n
+*
+* Enable the block layer
+*
+Enable the block layer (BLOCK) [Y/n/?] y
+  Block layer SG support v4 (BLK_DEV_BSG) [Y/?] y
+  Block layer SG support v4 helper lib (BLK_DEV_BSGLIB) [Y/?] y
+  Block layer data integrity support (BLK_DEV_INTEGRITY) [Y/?] y
+  Block layer bio throttling support (BLK_DEV_THROTTLING) [Y/n/?] y
+  Block device command line partition parser (BLK_CMDLINE_PARSER) [N/y/?] n
+  *
+  * Partition Types
+  *
+  Advanced partition selection (PARTITION_ADVANCED) [Y/n/?] y
+    Acorn partition support (ACORN_PARTITION) [Y/n/?] y
+      Cumana partition support (ACORN_PARTITION_CUMANA) [N/y/?] n
+      EESOX partition support (ACORN_PARTITION_EESOX) [N/y] n
+      ICS partition support (ACORN_PARTITION_ICS) [Y/n/?] y
+      Native filecore partition support (ACORN_PARTITION_ADFS) [N/y/?] n
+      PowerTec partition support (ACORN_PARTITION_POWERTEC) [N/y/?] n
+      RISCiX partition support (ACORN_PARTITION_RISCIX) [Y/n/?] y
+    AIX basic partition table support (AIX_PARTITION) [N/y/?] n
+    Alpha OSF partition support (OSF_PARTITION) [Y/n/?] y
+    Amiga partition table support (AMIGA_PARTITION) [Y/n/?] y
+    Atari partition table support (ATARI_PARTITION) [Y/n/?] y
+    Macintosh partition map support (MAC_PARTITION) [Y/n/?] y
+    PC BIOS (MSDOS partition tables) support (MSDOS_PARTITION) [Y/n/?] y
+      BSD disklabel (FreeBSD partition tables) support (BSD_DISKLABEL) [Y/n/?] y
+      Minix subpartition support (MINIX_SUBPARTITION) [Y/n/?] y
+      Solaris (x86) partition table support (SOLARIS_X86_PARTITION) [Y/n/?] y
+      Unixware slices support (UNIXWARE_DISKLABEL) [Y/n/?] y
+    Windows Logical Disk Manager (Dynamic Disk) support (LDM_PARTITION) [Y/n/?] y
+      Windows LDM extra logging (LDM_DEBUG) [N/y/?] n
+    SGI partition support (SGI_PARTITION) [Y/n/?] y
+    Ultrix partition table support (ULTRIX_PARTITION) [Y/n/?] y
+    Sun partition tables support (SUN_PARTITION) [Y/n/?] y
+    Karma Partition support (KARMA_PARTITION) [Y/n/?] y
+    EFI GUID Partition support (EFI_PARTITION) [Y/n/?] y
+    SYSV68 partition table support (SYSV68_PARTITION) [N/y/?] n
+    Command line partition support (CMDLINE_PARTITION) [N/y/?] n
+  *
+  * IO Schedulers
+  *
+  Deadline I/O scheduler (IOSCHED_DEADLINE) [Y/n/m/?] y
+  CFQ I/O scheduler (IOSCHED_CFQ) [Y/n/m/?] y
+    CFQ Group Scheduling support (CFQ_GROUP_IOSCHED) [Y/n/?] y
+  Default I/O scheduler
+    1. Deadline (DEFAULT_DEADLINE)
+  > 2. CFQ (DEFAULT_CFQ)
+    3. No-op (DEFAULT_NOOP)
+  choice[1-3?]: 2
+*
+* Processor type and features
+*
+DMA memory allocation support (ZONE_DMA) [Y/n/?] y
+Symmetric multi-processing support (SMP) [Y/n/?] y
+Support x2apic (X86_X2APIC) [Y/n/?] y
+Enable MPS table (X86_MPPARSE) [Y/n/?] y
+Support for extended (non-PC) x86 platforms (X86_EXTENDED_PLATFORM) [N/y/?] n
+Intel Low Power Subsystem Support (X86_INTEL_LPSS) [Y/n/?] y
+AMD ACPI2Platform devices support (X86_AMD_PLATFORM_DEVICE) [N/y/?] n
+Intel SoC IOSF Sideband support for SoC platforms (IOSF_MBI) [Y/?] y
+  Enable IOSF sideband access through debugfs (IOSF_MBI_DEBUG) [N/y/?] n
+Single-depth WCHAN output (SCHED_OMIT_FRAME_POINTER) [Y/n/?] y
+*
+* Linux guest support
+*
+Linux guest support (HYPERVISOR_GUEST) [Y/n/?] y
+  Enable paravirtualization code (PARAVIRT) [Y/n/?] y
+    paravirt-ops debugging (PARAVIRT_DEBUG) [N/y/?] n
+    Paravirtualization layer for spinlocks (PARAVIRT_SPINLOCKS) [N/y/?] n
+    Xen guest support (XEN) [Y/n/?] y
+      Limit Xen pv-domain memory to 512GB (XEN_512GB) [Y/n/?] y
+      Enable Xen debug and tuning parameters in debugfs (XEN_DEBUG_FS) [N/y/?] n
+      Support for running as a PVH guest (XEN_PVH) [Y/n] y
+    KVM Guest support (including kvmclock) (KVM_GUEST) [Y/n/?] y
+      Enable debug information for KVM Guests in debugfs (KVM_DEBUG_FS) [N/y/?] n
+    Paravirtual steal time accounting (PARAVIRT_TIME_ACCOUNTING) [N/y/?] n
+Processor family
+  1. Opteron/Athlon64/Hammer/K8 (MK8)
+  2. Intel P4 / older Netburst based Xeon (MPSC)
+  3. Core 2/newer Xeon (MCORE2)
+  4. Intel Atom (MATOM)
+> 5. Generic-x86-64 (GENERIC_CPU)
+choice[1-5?]: 5
+*
+* Supported processor vendors
+*
+Supported processor vendors (PROCESSOR_SELECT) [N/y/?] n
+Enable DMI scanning (DMI) [Y/n/?] y
+Old AMD GART IOMMU support (GART_IOMMU) [Y/n/?] y
+IBM Calgary IOMMU support (CALGARY_IOMMU) [Y/n/?] y
+  Should Calgary be enabled by default? (CALGARY_IOMMU_ENABLED_BY_DEFAULT) [Y/n/?] y
+Enable Maximum number of SMP Processors and NUMA Nodes (MAXSMP) [N/y/?] n
+Maximum number of CPUs (NR_CPUS) [512] 512
+SMT (Hyperthreading) scheduler support (SCHED_SMT) [Y/n/?] y
+Multi-core scheduler support (SCHED_MC) [Y/n/?] y
+Preemption Model
+  1. No Forced Preemption (Server) (PREEMPT_NONE)
+> 2. Voluntary Kernel Preemption (Desktop) (PREEMPT_VOLUNTARY)
+  3. Preemptible Kernel (Low-Latency Desktop) (PREEMPT)
+choice[1-3]: 2
+Reroute for broken boot IRQs (X86_REROUTE_FOR_BROKEN_BOOT_IRQS) [Y/n/?] y
+Machine Check / overheating reporting (X86_MCE) [Y/n/?] y
+  Intel MCE features (X86_MCE_INTEL) [Y/n/?] y
+  AMD MCE features (X86_MCE_AMD) [Y/n/?] y
+Machine check injector support (X86_MCE_INJECT) [M/n/y/?] m
+Enable support for 16-bit segments (X86_16BIT) [Y/n/?] y
+Enable vsyscall emulation (X86_VSYSCALL_EMULATION) [Y/n/?] y
+Dell i8k legacy laptop support (I8K) [M/n/y/?] m
+CPU microcode loading support (MICROCODE) [Y/n/?] y
+  Intel microcode loading support (MICROCODE_INTEL) [Y/n/?] y
+  AMD microcode loading support (MICROCODE_AMD) [Y/n/?] y
+AMD Processor Power Reporting Mechanism (PERF_EVENTS_AMD_POWER) [N/m/y/?] n
+/dev/cpu/*/msr - Model-specific register support (X86_MSR) [M/n/y/?] m
+/dev/cpu/*/cpuid - CPU information support (X86_CPUID) [M/n/y/?] m
+Numa Memory Allocation and Scheduler Support (NUMA) [Y/n/?] y
+  Old style AMD Opteron NUMA detection (AMD_NUMA) [Y/n/?] y
+  ACPI NUMA detection (X86_64_ACPI_NUMA) [Y/n/?] y
+  NUMA emulation (NUMA_EMU) [Y/n/?] y
+Maximum NUMA Nodes (as a power of 2) (NODES_SHIFT) [6] 6
+Enable sysfs memory/probe interface (ARCH_MEMORY_PROBE) [N/y/?] n
+Memory model
+> 1. Sparse Memory (SPARSEMEM_MANUAL)
+choice[1]: 1
+Sparse Memory virtual memmap (SPARSEMEM_VMEMMAP) [Y/n/?] y
+Enable to assign a node which has only movable memory (MOVABLE_NODE) [N/y/?] n
+Allow for memory hot-add (MEMORY_HOTPLUG) [Y/n] y
+  Allow for memory hot remove (MEMORY_HOTREMOVE) [Y/n] y
+Allow for balloon memory compaction/migration (BALLOON_COMPACTION) [Y/n/?] y
+Allow for memory compaction (COMPACTION) [Y/?] y
+  Page migration (MIGRATION) [Y/?] y
+Enable bounce buffers (BOUNCE) [Y/n/?] y
+Enable KSM for page merging (KSM) [Y/n/?] y
+Low address space to protect from user allocation (DEFAULT_MMAP_MIN_ADDR) [65536] 65536
+Enable recovery from hardware memory errors (MEMORY_FAILURE) [Y/n/?] y
+  HWPoison pages injector (HWPOISON_INJECT) [M/n/y] m
+Transparent Hugepage Support (TRANSPARENT_HUGEPAGE) [Y/n/?] y
+  Transparent Hugepage Support sysfs defaults
+    1. always (TRANSPARENT_HUGEPAGE_ALWAYS)
+  > 2. madvise (TRANSPARENT_HUGEPAGE_MADVISE)
+  choice[1-2?]: 2
+Enable cleancache driver to cache clean pages if tmem is present (CLEANCACHE) [N/y/?] n
+Enable frontswap to cache swap pages if tmem is present (FRONTSWAP) [Y/n/?] y
+Contiguous Memory Allocator (CMA) [N/y/?] n
+Track memory changes (MEM_SOFT_DIRTY) [Y/n/?] y
+Compressed cache for swap pages (EXPERIMENTAL) (ZSWAP) [Y/n/?] y
+Common API for compressed memory storage (ZPOOL) [Y/?] (NEW) y
+Low density storage for compressed pages (ZBUD) [Y/n/m/?] y
+Memory allocator for compressed pages (ZSMALLOC) [Y/n/m/?] y
+  Use page table mapping to access object in zsmalloc (PGTABLE_MAPPING) [N/y/?] n
+  Export zsmalloc statistics (ZSMALLOC_STAT) [N/y/?] n
+Defer initialisation of struct pages to kthreads (DEFERRED_STRUCT_PAGE_INIT) [N/y/?] n
+Enable idle page tracking (IDLE_PAGE_TRACKING) [N/y/?] n
+Device memory (pmem, etc...) hotplug support (ZONE_DEVICE) [N/y/?] n
+Support non-standard NVDIMMs and ADR protected memory (X86_PMEM_LEGACY) [N/m/y/?] n
+Check for low memory corruption (X86_CHECK_BIOS_CORRUPTION) [N/y/?] n
+Amount of low memory, in kilobytes, to reserve for the BIOS (X86_RESERVE_LOW) [64] 64
+MTRR (Memory Type Range Register) support (MTRR) [Y/n/?] y
+  MTRR cleanup support (MTRR_SANITIZER) [Y/n/?] y
+    MTRR cleanup enable value (0-1) (MTRR_SANITIZER_ENABLE_DEFAULT) [0] 0
+    MTRR cleanup spare reg num (0-7) (MTRR_SANITIZER_SPARE_REG_NR_DEFAULT) [1] 1
+  x86 PAT support (X86_PAT) [Y/n/?] y
+x86 architectural random number generator (ARCH_RANDOM) [Y/n/?] y
+Supervisor Mode Access Prevention (X86_SMAP) [Y/n/?] y
+Intel MPX (Memory Protection Extensions) (X86_INTEL_MPX) [N/y/?] n
+Intel Memory Protection Keys (X86_INTEL_MEMORY_PROTECTION_KEYS) [Y/n/?] y
+EFI runtime service support (EFI) [Y/n/?] y
+  EFI stub support (EFI_STUB) [Y/n/?] y
+    EFI mixed-mode support (EFI_MIXED) [Y/n/?] y
+Enable seccomp to safely compute untrusted bytecode (SECCOMP) [Y/n/?] y
+Timer frequency
+  1. 100 HZ (HZ_100)
+> 2. 250 HZ (HZ_250)
+  3. 300 HZ (HZ_300)
+  4. 1000 HZ (HZ_1000)
+choice[1-4?]: 2
+kexec system call (KEXEC) [Y/n/?] y
+kernel crash dumps (CRASH_DUMP) [Y/n/?] y
+kexec jump (KEXEC_JUMP) [N/y/?] n
+Physical address where the kernel is loaded (PHYSICAL_START) [0x1000000] 0x1000000
+Build a relocatable kernel (RELOCATABLE) [Y/?] y
+  Randomize the address of the kernel image (RANDOMIZE_BASE) [N/y/?] n
+Alignment value to which kernel should be aligned (PHYSICAL_ALIGN) [0x200000] 0x200000
+Support for hot-pluggable CPUs (HOTPLUG_CPU) [Y/?] y
+  Set default setting of cpu0_hotpluggable (BOOTPARAM_HOTPLUG_CPU0) [N/y/?] n
+  Debug CPU0 hotplug (DEBUG_HOTPLUG_CPU0) [N/y/?] n
+Disable the 32-bit vDSO (needed for glibc 2.3.3) (COMPAT_VDSO) [N/y/?] n
+vsyscall table for legacy applications
+  1. Native (LEGACY_VSYSCALL_NATIVE)
+> 2. Emulate (LEGACY_VSYSCALL_EMULATE)
+  3. None (LEGACY_VSYSCALL_NONE)
+choice[1-3?]: 2
+Built-in kernel command line (CMDLINE_BOOL) [N/y/?] n
+Enable the LDT (local descriptor table) (MODIFY_LDT_SYSCALL) [Y/n/?] y
+*
+* Power management and ACPI options
+*
+Suspend to RAM and standby (SUSPEND) [Y/n/?] y
+  Skip kernel's sys_sync() on suspend to RAM/standby (SUSPEND_SKIP_SYNC) [N/y/?] n
+Hibernation (aka 'suspend to disk') (HIBERNATION) [Y/n/?] y
+Default resume partition (PM_STD_PARTITION) []
+Opportunistic sleep (PM_AUTOSLEEP) [N/y/?] n
+User space wakeup sources interface (PM_WAKELOCKS) [N/y/?] n
+Device power management core functionality (PM) [Y/?] y
+  Power Management Debug Support (PM_DEBUG) [Y/n/?] y
+    Extra PM attributes in sysfs for low-level debugging/testing (PM_ADVANCED_DEBUG) [Y/n/?] y
+    Test suspend/resume and wakealarm during bootup (PM_TEST_SUSPEND) [N/y/?] n
+    Device suspend/resume watchdog (DPM_WATCHDOG) [N/y/?] n
+Suspend/resume event tracing (PM_TRACE_RTC) [N/y/?] n
+Enable workqueue power-efficient mode by default (WQ_POWER_EFFICIENT_DEFAULT) [N/y/?] n
+*
+* ACPI (Advanced Configuration and Power Interface) Support
+*
+ACPI (Advanced Configuration and Power Interface) Support (ACPI) [Y/n/?] y
+  AML debugger interface (ACPI_DEBUGGER) [N/y/?] n
+  Deprecated power /proc/acpi directories (ACPI_PROCFS_POWER) [N/y/?] n
+  Allow supported ACPI revision to be overriden (ACPI_REV_OVERRIDE_POSSIBLE) [Y/n/?] y
+  EC read/write access through /sys/kernel/debug/ec (ACPI_EC_DEBUGFS) [N/m/y/?] n
+  AC Adapter (ACPI_AC) [M/n/y/?] m
+  Battery (ACPI_BATTERY) [M/n/y/?] m
+  Button (ACPI_BUTTON) [M/y/?] m
+  Video (ACPI_VIDEO) [M/y/?] m
+  Fan (ACPI_FAN) [M/n/y/?] m
+  Dock (ACPI_DOCK) [Y/n/?] y
+  Processor (ACPI_PROCESSOR) [M/n/y/?] m
+  IPMI (ACPI_IPMI) [M/n/?] m
+  Processor Aggregator (ACPI_PROCESSOR_AGGREGATOR) [M/n/?] m
+  Thermal Zone (ACPI_THERMAL) [M/n/?] m
+  NUMA support (ACPI_NUMA) [Y] y
+  ACPI tables override via initrd (ACPI_INITRD_TABLE_OVERRIDE) [Y/n/?] y
+  Debug Statements (ACPI_DEBUG) [N/y/?] n
+  PCI slot detection driver (ACPI_PCI_SLOT) [Y/n/?] y
+  Power Management Timer Support (X86_PM_TIMER) [Y/n/?] y
+  Container and Module Devices (ACPI_CONTAINER) [Y/?] y
+  Memory Hotplug (ACPI_HOTPLUG_MEMORY) [Y/n/?] y
+  Smart Battery System (ACPI_SBS) [M/n/y/?] m
+  Hardware Error Device (ACPI_HED) [Y/?] y
+  Allow ACPI methods to be inserted/replaced at run time (ACPI_CUSTOM_METHOD) [N/m/y/?] n
+  Boottime Graphics Resource Table support (ACPI_BGRT) [Y/n/?] y
+  Hardware-reduced ACPI support only (ACPI_REDUCED_HARDWARE_ONLY) [N/y/?] n
+  ACPI NVDIMM Firmware Interface Table (NFIT) (ACPI_NFIT) [N/m/y/?] n
+  ACPI Platform Error Interface (APEI) (ACPI_APEI) [Y/n/?] y
+    APEI Generic Hardware Error Source (ACPI_APEI_GHES) [Y/n/?] y
+    APEI PCIe AER logging/recovering support (ACPI_APEI_PCIEAER) [Y/n/?] y
+    APEI memory error recovering support (ACPI_APEI_MEMORY_FAILURE) [Y/n/?] y
+    APEI Error INJection (EINJ) (ACPI_APEI_EINJ) [N/m/y/?] n
+    APEI Error Record Serialization Table (ERST) Debug Support (ACPI_APEI_ERST_DEBUG) [N/m/y/?] n
+  Extended Error Log support (ACPI_EXTLOG) [Y/n/m/?] y
+  *
+  * PMIC (Power Management Integrated Circuit) operation region support
+  *
+  PMIC (Power Management Integrated Circuit) operation region support (PMIC_OPREGION) [N/y/?] n
+*
+* SFI (Simple Firmware Interface) Support
+*
+SFI (Simple Firmware Interface) Support (SFI) [Y/n/?] y
+*
+* CPU Frequency scaling
+*
+CPU Frequency scaling (CPU_FREQ) [Y/n/?] y
+  CPU frequency translation statistics (CPU_FREQ_STAT) [M/n/y/?] m
+    CPU frequency translation statistics details (CPU_FREQ_STAT_DETAILS) [N/y/?] n
+  Default CPUFreq governor
+    1. performance (CPU_FREQ_DEFAULT_GOV_PERFORMANCE)
+    2. powersave (CPU_FREQ_DEFAULT_GOV_POWERSAVE)
+    3. userspace (CPU_FREQ_DEFAULT_GOV_USERSPACE)
+  > 4. ondemand (CPU_FREQ_DEFAULT_GOV_ONDEMAND)
+    5. conservative (CPU_FREQ_DEFAULT_GOV_CONSERVATIVE)
+  choice[1-5?]: 4
+  'performance' governor (CPU_FREQ_GOV_PERFORMANCE) [Y/?] y
+  'powersave' governor (CPU_FREQ_GOV_POWERSAVE) [M/n/y/?] m
+  'userspace' governor for userspace frequency scaling (CPU_FREQ_GOV_USERSPACE) [M/n/y/?] m
+  'ondemand' cpufreq policy governor (CPU_FREQ_GOV_ONDEMAND) [Y/?] y
+  'conservative' cpufreq governor (CPU_FREQ_GOV_CONSERVATIVE) [M/n/y/?] m
+  *
+  * CPU frequency scaling drivers
+  *
+  Intel P state control (X86_INTEL_PSTATE) [Y/n/?] y
+  Processor Clocking Control interface driver (X86_PCC_CPUFREQ) [M/n/?] m
+  ACPI Processor P-States driver (X86_ACPI_CPUFREQ) [M/n/?] m
+    Legacy cpb sysfs knob support for AMD CPUs (X86_ACPI_CPUFREQ_CPB) [Y/n/?] y
+  AMD Opteron/Athlon64 PowerNow! (X86_POWERNOW_K8) [M/n/?] m
+  AMD frequency sensitivity feedback powersave bias (X86_AMD_FREQ_SENSITIVITY) [M/n/?] m
+  Intel Enhanced SpeedStep (deprecated) (X86_SPEEDSTEP_CENTRINO) [M/n/?] m
+  Intel Pentium 4 clock modulation (X86_P4_CLOCKMOD) [M/n/y/?] m
+  *
+  * shared options
+  *
+*
+* CPU Idle
+*
+CPU idle PM support (CPU_IDLE) [Y/?] y
+  Ladder governor (for periodic timer tick) (CPU_IDLE_GOV_LADDER) [Y/n] y
+  Menu governor (for tickless system) (CPU_IDLE_GOV_MENU) [Y] y
+Cpuidle Driver for Intel Processors (INTEL_IDLE) [Y/n/?] y
+*
+* Memory power savings
+*
+Intel chipset idle memory power saving driver (I7300_IDLE) [M/n/y/?] m
+*
+* Bus options (PCI etc.)
+*
+PCI support (PCI) [Y/n/?] y
+  Support mmconfig PCI config space access (PCI_MMCONFIG) [Y/n] y
+  Read CNB20LE Host Bridge Windows (PCI_CNB20LE_QUIRK) [N/y/?] n
+  PCI Express Port Bus support (PCIEPORTBUS) [Y/n/?] y
+    PCI Express Hotplug driver (HOTPLUG_PCI_PCIE) [Y/n/?] y
+    Root Port Advanced Error Reporting support (PCIEAER) [Y/n/?] y
+      PCI Express ECRC settings control (PCIE_ECRC) [N/y/?] n
+      PCIe AER error injector support (PCIEAER_INJECT) [M/n/y/?] m
+    PCI Express ASPM control (PCIEASPM) [Y/n/?] y
+      Debug PCI Express ASPM (PCIEASPM_DEBUG) [N/y/?] n
+      Default ASPM policy
+      > 1. BIOS default (PCIEASPM_DEFAULT)
+        2. Powersave (PCIEASPM_POWERSAVE)
+        3. Performance (PCIEASPM_PERFORMANCE)
+      choice[1-3]: 1
+  Message Signaled Interrupts (MSI and MSI-X) (PCI_MSI) [Y/?] y
+  PCI Debugging (PCI_DEBUG) [N/y/?] n
+  Enable PCI resource re-allocation detection (PCI_REALLOC_ENABLE_AUTO) [Y/n/?] y
+  PCI Stub driver (PCI_STUB) [M/n/y/?] m
+  Xen PCI Frontend (XEN_PCIDEV_FRONTEND) [M/n/y/?] m
+  Interrupts on hypertransport devices (HT_IRQ) [Y/n/?] y
+PCI IOV support (PCI_IOV) [Y/n/?] y
+PCI PRI support (PCI_PRI) [Y/?] y
+PCI PASID support (PCI_PASID) [Y/?] y
+Hyper-V PCI Frontend (PCI_HYPERV) [N/m/?] n
+*
+* Support for PCI Hotplug
+*
+Support for PCI Hotplug (HOTPLUG_PCI) [Y/n/?] y
+  ACPI PCI Hotplug driver (HOTPLUG_PCI_ACPI) [Y/n/?] y
+    ACPI PCI Hotplug driver IBM extensions (HOTPLUG_PCI_ACPI_IBM) [M/n/y/?] m
+  CompactPCI Hotplug driver (HOTPLUG_PCI_CPCI) [Y/n/?] y
+    Ziatech ZT5550 CompactPCI Hotplug driver (HOTPLUG_PCI_CPCI_ZT5550) [M/n/y/?] m
+    Generic port I/O CompactPCI Hotplug driver (HOTPLUG_PCI_CPCI_GENERIC) [M/n/y/?] m
+  SHPC PCI Hotplug driver (HOTPLUG_PCI_SHPC) [M/n/y/?] m
+*
+* PCI host controller drivers
+*
+Platform bus based DesignWare PCIe Controller (PCIE_DW_PLAT) [N/y/?] n
+ISA-style DMA support (ISA_DMA_API) [Y/n/?] y
+*
+* PCCard (PCMCIA/CardBus) support
+*
+PCCard (PCMCIA/CardBus) support (PCCARD) [M/n/y/?] m
+  16-bit PCMCIA support (PCMCIA) [M/n/?] m
+    Load CIS updates from userspace (PCMCIA_LOAD_CIS) [Y/n/?] y
+  32-bit CardBus support (CARDBUS) [Y/n/?] y
+  *
+  * PC-card bridges
+  *
+  CardBus yenta-compatible bridge support (YENTA) [M/n/?] m
+    Special initialization for O2Micro bridges (YENTA_O2) [Y/n] y
+    Special initialization for Ricoh bridges (YENTA_RICOH) [Y/n] y
+    Special initialization for TI and EnE bridges (YENTA_TI) [Y/n] y
+      Auto-tune EnE bridges for CB cards (YENTA_ENE_TUNE) [Y/n] y
+    Special initialization for Toshiba ToPIC bridges (YENTA_TOSHIBA) [Y/n] y
+  Cirrus PD6729 compatible bridge support (PD6729) [M/n/?] m
+  i82092 compatible bridge support (I82092) [M/n/?] m
+RapidIO support (RAPIDIO) [N/m/y/?] n
+Mark VGA/VBE/EFI FB as generic system framebuffer (X86_SYSFB) [Y/n/?] y
+*
+* Executable file formats / Emulations
+*
+Kernel support for ELF binaries (BINFMT_ELF) [Y/?] y
+Write ELF core dumps with partial segments (CORE_DUMP_DEFAULT_ELF_HEADERS) [Y/n/?] y
+Kernel support for scripts starting with #! (BINFMT_SCRIPT) [Y/n/m/?] y
+Kernel support for MISC binaries (BINFMT_MISC) [M/n/y/?] m
+Enable core dump support (COREDUMP) [Y/n/?] y
+IA32 Emulation (IA32_EMULATION) [Y/n/?] y
+  IA32 a.out support (IA32_AOUT) [Y/n/m/?] y
+x32 ABI for 64-bit mode (X86_X32) [Y/n/?] y
+Volume Management Device Driver (VMD) [N/m/y/?] (NEW)
+*
+* Networking support
+*
+Networking support (NET) [Y/n/?] y
+  *
+  * Networking options
+  *
+  Packet socket (PACKET) [Y/n/m/?] y
+    Packet: sockets monitoring interface (PACKET_DIAG) [M/n/y/?] m
+  Unix domain sockets (UNIX) [Y/n/m/?] y
+    UNIX: socket monitoring interface (UNIX_DIAG) [M/n/y/?] m
+  Transformation user configuration interface (XFRM_USER) [M/n/y/?] m
+  Transformation sub policy support (XFRM_SUB_POLICY) [Y/n/?] y
+  Transformation migrate database (XFRM_MIGRATE) [Y/?] y
+  Transformation statistics (XFRM_STATISTICS) [N/y/?] n
+  PF_KEY sockets (NET_KEY) [M/n/y/?] m
+    PF_KEY MIGRATE (NET_KEY_MIGRATE) [Y/n/?] y
+  TCP/IP networking (INET) [Y/n/?] y
+    IP: multicasting (IP_MULTICAST) [Y/n/?] y
+    IP: advanced router (IP_ADVANCED_ROUTER) [Y/n/?] y
+      FIB TRIE statistics (IP_FIB_TRIE_STATS) [Y/n/?] y
+      IP: policy routing (IP_MULTIPLE_TABLES) [Y/n/?] y
+      IP: equal cost multipath (IP_ROUTE_MULTIPATH) [Y/n/?] y
+      IP: verbose route monitoring (IP_ROUTE_VERBOSE) [Y/n/?] y
+    IP: kernel level autoconfiguration (IP_PNP) [N/y/?] n
+    IP: tunneling (NET_IPIP) [M/n/y/?] m
+    IP: GRE demultiplexer (NET_IPGRE_DEMUX) [M/n/y/?] m
+    IP: GRE tunnels over IP (NET_IPGRE) [M/n/?] m
+      IP: broadcast GRE over IP (NET_IPGRE_BROADCAST) [Y/n/?] y
+    IP: multicast routing (IP_MROUTE) [Y/n/?] y
+      IP: multicast policy routing (IP_MROUTE_MULTIPLE_TABLES) [Y/n/?] y
+      IP: PIM-SM version 1 support (IP_PIMSM_V1) [Y/n/?] y
+      IP: PIM-SM version 2 support (IP_PIMSM_V2) [Y/n/?] y
+    IP: TCP syncookie support (SYN_COOKIES) [Y/?] y
+    Virtual (secure) IP: tunneling (NET_IPVTI) [M/n/?] m
+    IP: Foo (IP protocols) over UDP (NET_FOU) [N/m/y/?] (NEW)
+    IP: FOU encapsulation of IP tunnels (NET_FOU_IP_TUNNELS) [N/y/?] (NEW)
+    IP: AH transformation (INET_AH) [M/n/y/?] m
+    IP: ESP transformation (INET_ESP) [M/n/y/?] m
+    IP: IPComp transformation (INET_IPCOMP) [M/n/y/?] m
+    IP: IPsec transport mode (INET_XFRM_MODE_TRANSPORT) [M/n/y/?] m
+    IP: IPsec tunnel mode (INET_XFRM_MODE_TUNNEL) [M/n/y/?] m
+    IP: IPsec BEET mode (INET_XFRM_MODE_BEET) [M/n/y/?] m
+    INET: socket monitoring interface (INET_DIAG) [M/n/y/?] m
+      UDP: socket monitoring interface (INET_UDP_DIAG) [M/n/?] m
+      INET: allow privileged process to administratively close sockets (INET_DIAG_DESTROY) [N/y/?] (NEW)
+    *
+    * TCP: advanced congestion control
+    *
+    TCP: advanced congestion control (TCP_CONG_ADVANCED) [Y/n/?] y
+      Binary Increase Congestion (BIC) control (TCP_CONG_BIC) [M/n/y/?] m
+      CUBIC TCP (TCP_CONG_CUBIC) [Y/n/m/?] y
+      TCP Westwood+ (TCP_CONG_WESTWOOD) [M/n/y/?] m
+      H-TCP (TCP_CONG_HTCP) [M/n/y/?] m
+      High Speed TCP (TCP_CONG_HSTCP) [M/n/y/?] m
+      TCP-Hybla congestion control algorithm (TCP_CONG_HYBLA) [M/n/y/?] m
+      TCP Vegas (TCP_CONG_VEGAS) [M/y/?] m
+      Scalable TCP (TCP_CONG_SCALABLE) [M/n/y/?] m
+      TCP Low Priority (TCP_CONG_LP) [M/n/y/?] m
+      TCP Veno (TCP_CONG_VENO) [M/n/y/?] m
+      YeAH TCP (TCP_CONG_YEAH) [M/n/y/?] m
+      TCP Illinois (TCP_CONG_ILLINOIS) [M/n/y/?] m
+      DataCenter TCP (DCTCP) (TCP_CONG_DCTCP) [N/m/y/?] (NEW)
+      CAIA Delay-Gradient (CDG) (TCP_CONG_CDG) [N/m/y/?] (NEW)
+      Default TCP congestion control
+      > 1. Cubic (DEFAULT_CUBIC)
+        2. Reno (DEFAULT_RENO)
+      choice[1-2?]: 1
+    TCP: MD5 Signature Option support (RFC2385) (TCP_MD5SIG) [Y/n/?] y
+    *
+    * The IPv6 protocol
+    *
+    The IPv6 protocol (IPV6) [Y/n/m/?] y
+      IPv6: Router Preference (RFC 4191) support (IPV6_ROUTER_PREF) [Y/n/?] y
+        IPv6: Route Information (RFC 4191) support (IPV6_ROUTE_INFO) [Y/n/?] y
+      IPv6: Enable RFC 4429 Optimistic DAD (IPV6_OPTIMISTIC_DAD) [Y/n/?] y
+      IPv6: AH transformation (INET6_AH) [M/n/y/?] m
+      IPv6: ESP transformation (INET6_ESP) [M/n/y/?] m
+      IPv6: IPComp transformation (INET6_IPCOMP) [M/n/y/?] m
+      IPv6: Mobility (IPV6_MIP6) [Y/n/m/?] y
+      IPv6: Identifier Locator Addressing (ILA) (IPV6_ILA) [N/m/y/?] (NEW)
+      IPv6: IPsec transport mode (INET6_XFRM_MODE_TRANSPORT) [M/n/y/?] m
+      IPv6: IPsec tunnel mode (INET6_XFRM_MODE_TUNNEL) [M/n/y/?] m
+      IPv6: IPsec BEET mode (INET6_XFRM_MODE_BEET) [M/n/y/?] m
+      IPv6: MIPv6 route optimization mode (INET6_XFRM_MODE_ROUTEOPTIMIZATION) [M/n/y/?] m
+      Virtual (secure) IPv6: tunneling (IPV6_VTI) [M/n/?] m
+      IPv6: IPv6-in-IPv4 tunnel (SIT driver) (IPV6_SIT) [M/n/y/?] m
+        IPv6: IPv6 Rapid Deployment (6RD) (IPV6_SIT_6RD) [Y/n/?] y
+      IPv6: IP-in-IPv6 tunnel (RFC2473) (IPV6_TUNNEL) [M/y/?] m
+      IPv6: GRE tunnel (IPV6_GRE) [M/n/y/?] m
+      IPv6: Multiple Routing Tables (IPV6_MULTIPLE_TABLES) [Y/n/?] y
+        IPv6: source address based routing (IPV6_SUBTREES) [Y/n/?] y
+      IPv6: multicast routing (IPV6_MROUTE) [Y/n/?] y
+        IPv6: multicast policy routing (IPV6_MROUTE_MULTIPLE_TABLES) [Y/n/?] y
+        IPv6: PIM-SM version 2 support (IPV6_PIMSM_V2) [Y/n/?] y
+    NetLabel subsystem support (NETLABEL) [N/y/?] n
+  Security Marking (NETWORK_SECMARK) [Y/?] y
+  Timestamping in PHY devices (NETWORK_PHY_TIMESTAMPING) [N/y/?] n
+  *
+  * Network packet filtering framework (Netfilter)
+  *
+  Network packet filtering framework (Netfilter) (NETFILTER) [Y/n/?] y
+    Network packet filtering debugging (NETFILTER_DEBUG) [N/y/?] n
+    Advanced netfilter configuration (NETFILTER_ADVANCED) [Y/n/?] y
+      Bridged IP/ARP packets filtering (BRIDGE_NETFILTER) [M/n/?] m
+    *
+    * Core Netfilter Configuration
+    *
+    Netfilter ingress support (NETFILTER_INGRESS) [Y/n/?] (NEW)
+    Netfilter NFACCT over NFNETLINK interface (NETFILTER_NETLINK_ACCT) [M/y/?] m
+    Netfilter NFQUEUE over NFNETLINK interface (NETFILTER_NETLINK_QUEUE) [M/y/?] m
+    Netfilter LOG over NFNETLINK interface (NETFILTER_NETLINK_LOG) [M/y/?] m
+    Netfilter connection tracking support (NF_CONNTRACK) [M/n/y/?] m
+    Connection mark tracking support (NF_CONNTRACK_MARK) [Y/?] y
+    Connection tracking security mark support (NF_CONNTRACK_SECMARK) [Y/n/?] y
+    Connection tracking zones (NF_CONNTRACK_ZONES) [Y/n/?] y
+    Supply CT list in procfs (OBSOLETE) (NF_CONNTRACK_PROCFS) [Y/n/?] y
+    Connection tracking events (NF_CONNTRACK_EVENTS) [Y/n/?] y
+    Connection tracking timeout (NF_CONNTRACK_TIMEOUT) [Y/n/?] y
+    Connection tracking timestamping (NF_CONNTRACK_TIMESTAMP) [Y/n/?] y
+    DCCP protocol connection tracking support (NF_CT_PROTO_DCCP) [M/n/?] m
+    SCTP protocol connection tracking support (NF_CT_PROTO_SCTP) [M/n/?] m
+    UDP-Lite protocol connection tracking support (NF_CT_PROTO_UDPLITE) [M/n/?] m
+    Amanda backup protocol support (NF_CONNTRACK_AMANDA) [M/n/?] m
+    FTP protocol support (NF_CONNTRACK_FTP) [M/n/?] m
+    H.323 protocol support (NF_CONNTRACK_H323) [M/n/?] m
+    IRC protocol support (NF_CONNTRACK_IRC) [M/n/?] m
+    NetBIOS name service protocol support (NF_CONNTRACK_NETBIOS_NS) [M/n/?] m
+    SNMP service protocol support (NF_CONNTRACK_SNMP) [M/n/?] m
+    PPtP protocol support (NF_CONNTRACK_PPTP) [M/n/?] m
+    SANE protocol support (NF_CONNTRACK_SANE) [M/n/?] m
+    SIP protocol support (NF_CONNTRACK_SIP) [M/n/?] m
+    TFTP protocol support (NF_CONNTRACK_TFTP) [M/n/?] m
+    Connection tracking netlink interface (NF_CT_NETLINK) [M/n/?] m
+    Connection tracking timeout tuning via Netlink (NF_CT_NETLINK_TIMEOUT) [M/n/?] m
+    NFQUEUE and NFLOG integration with Connection Tracking (NETFILTER_NETLINK_GLUE_CT) [N/y/?] (NEW)
+    IPv4/IPv6 redirect support (NF_NAT_REDIRECT) [M/?] (NEW) m
+    Netfilter nf_tables support (NF_TABLES) [M/n/y/?] m
+      Netfilter nf_tables mixed IPv4/IPv6 tables support (NF_TABLES_INET) [M/n/?] m
+      Netfilter nf_tables netdev tables support (NF_TABLES_NETDEV) [N/m/?] (NEW)
+      Netfilter nf_tables IPv6 exthdr module (NFT_EXTHDR) [M/n/?] m
+      Netfilter nf_tables meta module (NFT_META) [M/n/?] m
+      Netfilter nf_tables conntrack module (NFT_CT) [M/n/?] m
+      Netfilter nf_tables rbtree set module (NFT_RBTREE) [M/n/?] m
+      Netfilter nf_tables hash set module (NFT_HASH) [M/n/?] m
+      Netfilter nf_tables counter module (NFT_COUNTER) [M/n/?] m
+      Netfilter nf_tables log module (NFT_LOG) [M/n/?] m
+      Netfilter nf_tables limit module (NFT_LIMIT) [M/n/?] m
+      Netfilter nf_tables masquerade support (NFT_MASQ) [N/m/?] (NEW)
+      Netfilter nf_tables redirect support (NFT_REDIR) [N/m/?] (NEW)
+      Netfilter nf_tables nat module (NFT_NAT) [M/n/?] m
+      Netfilter nf_tables queue module (NFT_QUEUE) [M/n/?] m
+      Netfilter nf_tables reject support (NFT_REJECT) [M/n/?] m
+      Netfilter x_tables over nf_tables module (NFT_COMPAT) [M/n/?] m
+    Netfilter Xtables support (required for ip_tables) (NETFILTER_XTABLES) [M/y/?] m
+      *
+      * Xtables combined modules
+      *
+      nfmark target and match support (NETFILTER_XT_MARK) [M/?] m
+      ctmark target and match support (NETFILTER_XT_CONNMARK) [M/?] m
+      set target and match support (NETFILTER_XT_SET) [M/n/?] m
+      *
+      * Xtables targets
+      *
+      AUDIT target support (NETFILTER_XT_TARGET_AUDIT) [M/n/?] m
+      CHECKSUM target support (NETFILTER_XT_TARGET_CHECKSUM) [M/n/?] m
+      "CLASSIFY" target support (NETFILTER_XT_TARGET_CLASSIFY) [M/n/?] m
+      "CONNMARK" target support (NETFILTER_XT_TARGET_CONNMARK) [M/n/?] m
+      "CONNSECMARK" target support (NETFILTER_XT_TARGET_CONNSECMARK) [M/n/?] m
+      "CT" target support (NETFILTER_XT_TARGET_CT) [M/n/?] m
+      "DSCP" and "TOS" target support (NETFILTER_XT_TARGET_DSCP) [M/n/?] m
+      "HL" hoplimit target support (NETFILTER_XT_TARGET_HL) [M/?] m
+      "HMARK" target support (NETFILTER_XT_TARGET_HMARK) [M/n/?] m
+      IDLETIMER target support (NETFILTER_XT_TARGET_IDLETIMER) [M/n/?] m
+      "LED" target support (NETFILTER_XT_TARGET_LED) [M/n/?] m
+      LOG target support (NETFILTER_XT_TARGET_LOG) [M/n/?] m
+      "MARK" target support (NETFILTER_XT_TARGET_MARK) [M/n/?] m
+      "SNAT and DNAT" targets support (NETFILTER_XT_NAT) [N/m/?] (NEW)
+      "NETMAP" target support (NETFILTER_XT_TARGET_NETMAP) [M/n/?] m
+      "NFLOG" target support (NETFILTER_XT_TARGET_NFLOG) [M/n/?] m
+      "NFQUEUE" target Support (NETFILTER_XT_TARGET_NFQUEUE) [M/n/?] m
+      "NOTRACK" target support (DEPRECATED) (NETFILTER_XT_TARGET_NOTRACK) [N/m] n
+      "RATEEST" target support (NETFILTER_XT_TARGET_RATEEST) [M/?] m
+      REDIRECT target support (NETFILTER_XT_TARGET_REDIRECT) [M/n/?] m
+      "TEE" - packet cloning to alternate destination (NETFILTER_XT_TARGET_TEE) [M/n/?] m
+      "TPROXY" target transparent proxying support (NETFILTER_XT_TARGET_TPROXY) [M/n/?] m
+      "TRACE" target support (NETFILTER_XT_TARGET_TRACE) [M/n/?] m
+      "SECMARK" target support (NETFILTER_XT_TARGET_SECMARK) [M/n/?] m
+      "TCPMSS" target support (NETFILTER_XT_TARGET_TCPMSS) [M/n/?] m
+      "TCPOPTSTRIP" target support (NETFILTER_XT_TARGET_TCPOPTSTRIP) [M/n/?] m
+      *
+      * Xtables matches
+      *
+      "addrtype" address type match support (NETFILTER_XT_MATCH_ADDRTYPE) [M/n/?] m
+      "bpf" match support (NETFILTER_XT_MATCH_BPF) [M/n/?] m
+      "control group" match support (NETFILTER_XT_MATCH_CGROUP) [M/n/?] m
+      "cluster" match support (NETFILTER_XT_MATCH_CLUSTER) [M/n/?] m
+      "comment" match support (NETFILTER_XT_MATCH_COMMENT) [M/n/?] m
+      "connbytes" per-connection counter match support (NETFILTER_XT_MATCH_CONNBYTES) [M/n/?] m
+      "connlabel" match support (NETFILTER_XT_MATCH_CONNLABEL) [M/n/?] m
+      "connlimit" match support (NETFILTER_XT_MATCH_CONNLIMIT) [M/n/?] m
+      "connmark" connection mark match support (NETFILTER_XT_MATCH_CONNMARK) [M/n/?] m
+      "conntrack" connection tracking match support (NETFILTER_XT_MATCH_CONNTRACK) [M/n/?] m
+      "cpu" match support (NETFILTER_XT_MATCH_CPU) [M/n/?] m
+      "dccp" protocol match support (NETFILTER_XT_MATCH_DCCP) [M/n/?] m
+      "devgroup" match support (NETFILTER_XT_MATCH_DEVGROUP) [M/n/?] m
+      "dscp" and "tos" match support (NETFILTER_XT_MATCH_DSCP) [M/n/?] m
+      "ecn" match support (NETFILTER_XT_MATCH_ECN) [M/?] m
+      "esp" match support (NETFILTER_XT_MATCH_ESP) [M/n/?] m
+      "hashlimit" match support (NETFILTER_XT_MATCH_HASHLIMIT) [M/n/?] m
+      "helper" match support (NETFILTER_XT_MATCH_HELPER) [M/n/?] m
+      "hl" hoplimit/TTL match support (NETFILTER_XT_MATCH_HL) [M/?] m
+      "ipcomp" match support (NETFILTER_XT_MATCH_IPCOMP) [M/n/?] m
+      "iprange" address range match support (NETFILTER_XT_MATCH_IPRANGE) [M/n/?] m
+      "ipvs" match support (NETFILTER_XT_MATCH_IPVS) [M/n/?] m
+      "l2tp" match support (NETFILTER_XT_MATCH_L2TP) [M/n/?] m
+      "length" match support (NETFILTER_XT_MATCH_LENGTH) [M/n/?] m
+      "limit" match support (NETFILTER_XT_MATCH_LIMIT) [M/n/?] m
+      "mac" address match support (NETFILTER_XT_MATCH_MAC) [M/n/?] m
+      "mark" match support (NETFILTER_XT_MATCH_MARK) [M/n/?] m
+      "multiport" Multiple port match support (NETFILTER_XT_MATCH_MULTIPORT) [M/n/?] m
+      "nfacct" match support (NETFILTER_XT_MATCH_NFACCT) [M/n/?] m
+      "osf" Passive OS fingerprint match (NETFILTER_XT_MATCH_OSF) [M/n/?] m
+      "owner" match support (NETFILTER_XT_MATCH_OWNER) [M/n/?] m
+      IPsec "policy" match support (NETFILTER_XT_MATCH_POLICY) [M/n/?] m
+      "physdev" match support (NETFILTER_XT_MATCH_PHYSDEV) [M/n/?] m
+      "pkttype" packet type match support (NETFILTER_XT_MATCH_PKTTYPE) [M/n/?] m
+      "quota" match support (NETFILTER_XT_MATCH_QUOTA) [M/n/?] m
+      "rateest" match support (NETFILTER_XT_MATCH_RATEEST) [M/n/?] m
+      "realm" match support (NETFILTER_XT_MATCH_REALM) [M/n/?] m
+      "recent" match support (NETFILTER_XT_MATCH_RECENT) [M/n/?] m
+      "sctp" protocol match support (NETFILTER_XT_MATCH_SCTP) [M/n/?] m
+      "socket" match support (NETFILTER_XT_MATCH_SOCKET) [M/n/?] m
+      "state" match support (NETFILTER_XT_MATCH_STATE) [M/n/?] m
+      "statistic" match support (NETFILTER_XT_MATCH_STATISTIC) [M/n/?] m
+      "string" match support (NETFILTER_XT_MATCH_STRING) [M/n/?] m
+      "tcpmss" match support (NETFILTER_XT_MATCH_TCPMSS) [M/n/?] m
+      "time" match support (NETFILTER_XT_MATCH_TIME) [M/n/?] m
+      "u32" match support (NETFILTER_XT_MATCH_U32) [M/n/?] m
+    *
+    * IP set support
+    *
+    IP set support (IP_SET) [M/n/y/?] m
+      Maximum number of IP sets (IP_SET_MAX) [256] 256
+      bitmap:ip set support (IP_SET_BITMAP_IP) [M/n/?] m
+      bitmap:ip,mac set support (IP_SET_BITMAP_IPMAC) [M/n/?] m
+      bitmap:port set support (IP_SET_BITMAP_PORT) [M/n/?] m
+      hash:ip set support (IP_SET_HASH_IP) [M/n/?] m
+      hash:ip,mark set support (IP_SET_HASH_IPMARK) [M/n/?] m
+      hash:ip,port set support (IP_SET_HASH_IPPORT) [M/n/?] m
+      hash:ip,port,ip set support (IP_SET_HASH_IPPORTIP) [M/n/?] m
+      hash:ip,port,net set support (IP_SET_HASH_IPPORTNET) [M/n/?] m
+      hash:mac set support (IP_SET_HASH_MAC) [N/m/?] (NEW)
+      hash:net,port,net set support (IP_SET_HASH_NETPORTNET) [M/n/?] m
+      hash:net set support (IP_SET_HASH_NET) [M/n/?] m
+      hash:net,net set support (IP_SET_HASH_NETNET) [M/n/?] m
+      hash:net,port set support (IP_SET_HASH_NETPORT) [M/n/?] m
+      hash:net,iface set support (IP_SET_HASH_NETIFACE) [M/n/?] m
+      list:set set support (IP_SET_LIST_SET) [M/n/?] m
+    *
+    * IP virtual server support
+    *
+    IP virtual server support (IP_VS) [M/n/?] m
+      IPv6 support for IPVS (IP_VS_IPV6) [Y/n/?] y
+      IP virtual server debugging (IP_VS_DEBUG) [N/y/?] n
+      IPVS connection table size (the Nth power of 2) (IP_VS_TAB_BITS) [12] 12
+      *
+      * IPVS transport protocol load balancing support
+      *
+      TCP load balancing support (IP_VS_PROTO_TCP) [Y/n/?] y
+      UDP load balancing support (IP_VS_PROTO_UDP) [Y/n/?] y
+      ESP load balancing support (IP_VS_PROTO_ESP) [Y/n/?] y
+      AH load balancing support (IP_VS_PROTO_AH) [Y/n/?] y
+      SCTP load balancing support (IP_VS_PROTO_SCTP) [Y/n/?] y
+      *
+      * IPVS scheduler
+      *
+      round-robin scheduling (IP_VS_RR) [M/n/?] m
+      weighted round-robin scheduling (IP_VS_WRR) [M/n/?] m
+      least-connection scheduling (IP_VS_LC) [M/n/?] m
+      weighted least-connection scheduling (IP_VS_WLC) [M/n/?] m
+      weighted failover scheduling (IP_VS_FO) [N/m/?] (NEW)
+      weighted overflow scheduling (IP_VS_OVF) [N/m/?] (NEW)
+      locality-based least-connection scheduling (IP_VS_LBLC) [M/n/?] m
+      locality-based least-connection with replication scheduling (IP_VS_LBLCR) [M/n/?] m
+      destination hashing scheduling (IP_VS_DH) [M/n/?] m
+      source hashing scheduling (IP_VS_SH) [M/n/?] m
+      shortest expected delay scheduling (IP_VS_SED) [M/n/?] m
+      never queue scheduling (IP_VS_NQ) [M/n/?] m
+      *
+      * IPVS SH scheduler
+      *
+      IPVS source hashing table size (the Nth power of 2) (IP_VS_SH_TAB_BITS) [8] 8
+      *
+      * IPVS application helper
+      *
+      FTP protocol helper (IP_VS_FTP) [M/n/?] m
+      Netfilter connection tracking (IP_VS_NFCT) [Y/?] y
+      SIP persistence engine (IP_VS_PE_SIP) [M/n/?] m
+    *
+    * IP: Netfilter Configuration
+    *
+    IPv4 connection tracking support (required for NAT) (NF_CONNTRACK_IPV4) [M/n/?] m
+      proc/sysctl compatibility with old connection tracking (NF_CONNTRACK_PROC_COMPAT) [Y/n/?] y
+    IPv4 nf_tables support (NF_TABLES_IPV4) [M/?] m
+      IPv4 nf_tables route chain support (NFT_CHAIN_ROUTE_IPV4) [M/n/?] m
+      IPv4 nf_tables packet duplication support (NFT_DUP_IPV4) [N/m/?] (NEW)
+    ARP nf_tables support (NF_TABLES_ARP) [M/n/?] m
+    Netfilter IPv4 packet duplication to alternate destination (NF_DUP_IPV4) [M/?] (NEW) m
+    ARP packet logging (NF_LOG_ARP) [N/m/y] (NEW)
+    IPv4 packet logging (NF_LOG_IPV4) [M/y] (NEW)
+    IPv4 packet rejection (NF_REJECT_IPV4) [M/y] (NEW)
+    IPv4 NAT (NF_NAT_IPV4) [M/n/?] m
+      IPv4 nf_tables nat chain support (NFT_CHAIN_NAT_IPV4) [M/n/?] m
+      IPv4 masquerade support (NF_NAT_MASQUERADE_IPV4) [N/m/?] (NEW)
+      Basic SNMP-ALG support (NF_NAT_SNMP_BASIC) [M/n/?] m
+    IP tables support (required for filtering/masq/NAT) (IP_NF_IPTABLES) [M/n/y/?] m
+      "ah" match support (IP_NF_MATCH_AH) [M/n/?] m
+      "ecn" match support (IP_NF_MATCH_ECN) [M/n/?] m
+      "rpfilter" reverse path filter match support (IP_NF_MATCH_RPFILTER) [M/n/?] m
+      "ttl" match support (IP_NF_MATCH_TTL) [M/n/?] m
+      Packet filtering (IP_NF_FILTER) [M/n/?] m
+        REJECT target support (IP_NF_TARGET_REJECT) [M/n/?] m
+      SYNPROXY target support (IP_NF_TARGET_SYNPROXY) [M/n/?] m
+      iptables NAT support (IP_NF_NAT) [N/m/?] (NEW)
+      Packet mangling (IP_NF_MANGLE) [M/n/?] m
+        CLUSTERIP target support (IP_NF_TARGET_CLUSTERIP) [M/n/?] m
+        ECN target support (IP_NF_TARGET_ECN) [M/n/?] m
+        "TTL" target support (IP_NF_TARGET_TTL) [M/n/?] m
+      raw table support (required for NOTRACK/TRACE) (IP_NF_RAW) [M/n/?] m
+      Security table (IP_NF_SECURITY) [M/n/?] m
+    ARP tables support (IP_NF_ARPTABLES) [M/n/y/?] m
+      ARP packet filtering (IP_NF_ARPFILTER) [M/n/?] m
+      ARP payload mangling (IP_NF_ARP_MANGLE) [M/n/?] m
+    *
+    * IPv6: Netfilter Configuration
+    *
+    IPv6 connection tracking support (NF_CONNTRACK_IPV6) [M/n/?] m
+    IPv6 nf_tables support (NF_TABLES_IPV6) [M/?] m
+      IPv6 nf_tables route chain support (NFT_CHAIN_ROUTE_IPV6) [M/n/?] m
+      IPv6 nf_tables packet duplication support (NFT_DUP_IPV6) [N/m/?] (NEW)
+    Netfilter IPv6 packet duplication to alternate destination (NF_DUP_IPV6) [M/?] (NEW) m
+    IPv6 packet rejection (NF_REJECT_IPV6) [M/y] (NEW)
+    IPv6 packet logging (NF_LOG_IPV6) [M/y] (NEW)
+    IPv6 NAT (NF_NAT_IPV6) [M/n/?] m
+      IPv6 nf_tables nat chain support (NFT_CHAIN_NAT_IPV6) [M/n/?] m
+      IPv6 masquerade support (NF_NAT_MASQUERADE_IPV6) [N/m/?] (NEW)
+    IP6 tables support (required for filtering) (IP6_NF_IPTABLES) [M/y/?] m
+      "ah" match support (IP6_NF_MATCH_AH) [M/n/?] m
+      "eui64" address check (IP6_NF_MATCH_EUI64) [M/n/?] m
+      "frag" Fragmentation header match support (IP6_NF_MATCH_FRAG) [M/n/?] m
+      "hbh" hop-by-hop and "dst" opts header match support (IP6_NF_MATCH_OPTS) [M/n/?] m
+      "hl" hoplimit match support (IP6_NF_MATCH_HL) [M/n/?] m
+      "ipv6header" IPv6 Extension Headers Match (IP6_NF_MATCH_IPV6HEADER) [M/n/?] m
+      "mh" match support (IP6_NF_MATCH_MH) [M/n/?] m
+      "rpfilter" reverse path filter match support (IP6_NF_MATCH_RPFILTER) [M/n/?] m
+      "rt" Routing header match support (IP6_NF_MATCH_RT) [M/n/?] m
+      "HL" hoplimit target support (IP6_NF_TARGET_HL) [M/n/?] m
+      Packet filtering (IP6_NF_FILTER) [M/n/?] m
+        REJECT target support (IP6_NF_TARGET_REJECT) [M/n/?] m
+      SYNPROXY target support (IP6_NF_TARGET_SYNPROXY) [M/n/?] m
+      Packet mangling (IP6_NF_MANGLE) [M/n/?] m
+      raw table support (required for TRACE) (IP6_NF_RAW) [M/n/?] m
+      Security table (IP6_NF_SECURITY) [M/n/?] m
+      ip6tables NAT support (IP6_NF_NAT) [N/m/?] (NEW)
+    *
+    * DECnet: Netfilter Configuration
+    *
+    Routing message grabulator (for userland routing daemon) (DECNET_NF_GRABULATOR) [M/n/?] m
+    *
+    * Ethernet Bridge nf_tables support
+    *
+    Ethernet Bridge nf_tables support (NF_TABLES_BRIDGE) [M/n] m
+      Netfilter nf_table bridge meta support (NFT_BRIDGE_META) [M/n/?] m
+      Netfilter nf_tables bridge reject support (NFT_BRIDGE_REJECT) [N/m/?] (NEW)
+      Bridge packet logging (NF_LOG_BRIDGE) [N/m] (NEW)
+    *
+    * Ethernet Bridge tables (ebtables) support
+    *
+    Ethernet Bridge tables (ebtables) support (BRIDGE_NF_EBTABLES) [M/n/?] m
+      ebt: broute table support (BRIDGE_EBT_BROUTE) [M/n/?] m
+      ebt: filter table support (BRIDGE_EBT_T_FILTER) [M/n/?] m
+      ebt: nat table support (BRIDGE_EBT_T_NAT) [M/n/?] m
+      ebt: 802.3 filter support (BRIDGE_EBT_802_3) [M/n/?] m
+      ebt: among filter support (BRIDGE_EBT_AMONG) [M/n/?] m
+      ebt: ARP filter support (BRIDGE_EBT_ARP) [M/n/?] m
+      ebt: IP filter support (BRIDGE_EBT_IP) [M/n/?] m
+      ebt: IP6 filter support (BRIDGE_EBT_IP6) [M/n/?] m
+      ebt: limit match support (BRIDGE_EBT_LIMIT) [M/n/?] m
+      ebt: mark filter support (BRIDGE_EBT_MARK) [M/n/?] m
+      ebt: packet type filter support (BRIDGE_EBT_PKTTYPE) [M/n/?] m
+      ebt: STP filter support (BRIDGE_EBT_STP) [M/n/?] m
+      ebt: 802.1Q VLAN filter support (BRIDGE_EBT_VLAN) [M/n/?] m
+      ebt: arp reply target support (BRIDGE_EBT_ARPREPLY) [M/n/?] m
+      ebt: dnat target support (BRIDGE_EBT_DNAT) [M/n/?] m
+      ebt: mark target support (BRIDGE_EBT_MARK_T) [M/n/?] m
+      ebt: redirect target support (BRIDGE_EBT_REDIRECT) [M/n/?] m
+      ebt: snat target support (BRIDGE_EBT_SNAT) [M/n/?] m
+      ebt: log support (BRIDGE_EBT_LOG) [M/n/?] m
+      ebt: nflog support (BRIDGE_EBT_NFLOG) [M/n/?] m
+  *
+  * The DCCP Protocol
+  *
+  The DCCP Protocol (IP_DCCP) [M/n/y/?] m
+    *
+    * DCCP CCIDs Configuration
+    *
+    CCID-2 debugging messages (IP_DCCP_CCID2_DEBUG) [N/y/?] n
+    CCID-3 (TCP-Friendly) (IP_DCCP_CCID3) [Y/n/?] y
+      CCID-3 debugging messages (IP_DCCP_CCID3_DEBUG) [N/y/?] n
+    *
+    * DCCP Kernel Hacking
+    *
+    DCCP debug messages (IP_DCCP_DEBUG) [N/y/?] n
+    DCCP connection probing (NET_DCCPPROBE) [M/n/?] m
+  *
+  * The SCTP Protocol
+  *
+  The SCTP Protocol (IP_SCTP) [M/y/?] m
+    SCTP: Association probing (NET_SCTPPROBE) [M/n/?] m
+    SCTP: Debug object counts (SCTP_DBG_OBJCNT) [N/y/?] n
+    Default SCTP cookie HMAC encoding
+    > 1. Enable optional MD5 hmac cookie generation (SCTP_DEFAULT_COOKIE_HMAC_MD5)
+      2. Enable optional SHA1 hmac cookie generation (SCTP_DEFAULT_COOKIE_HMAC_SHA1)
+      3. Use no hmac alg in SCTP cookie generation (SCTP_DEFAULT_COOKIE_HMAC_NONE)
+    choice[1-3?]: 1
+    Enable optional MD5 hmac cookie generation (SCTP_COOKIE_HMAC_MD5) [Y/?] y
+    Enable optional SHA1 hmac cookie generation (SCTP_COOKIE_HMAC_SHA1) [Y/n/?] y
+  The RDS Protocol (RDS) [M/n/y/?] m
+    RDS over Infiniband (RDS_RDMA) [M/n/?] m
+    RDS over TCP (RDS_TCP) [M/n/?] m
+    RDS debugging messages (RDS_DEBUG) [N/y] n
+  *
+  * The TIPC Protocol
+  *
+  The TIPC Protocol (TIPC) [M/n/y/?] m
+    InfiniBand media type support (TIPC_MEDIA_IB) [Y/n/?] y
+    IP/UDP media type support (TIPC_MEDIA_UDP) [Y/n/?] (NEW)
+  Asynchronous Transfer Mode (ATM) (ATM) [M/n/y/?] m
+    Classical IP over ATM (ATM_CLIP) [M/n/?] m
+      Do NOT send ICMP if no neighbour (ATM_CLIP_NO_ICMP) [N/y/?] n
+    LAN Emulation (LANE) support (ATM_LANE) [M/n/?] m
+      Multi-Protocol Over ATM (MPOA) support (ATM_MPOA) [M/n/?] m
+    RFC1483/2684 Bridged protocols (ATM_BR2684) [M/n/?] m
+      Per-VC IP filter kludge (ATM_BR2684_IPFILTER) [N/y/?] n
+  *
+  * Layer Two Tunneling Protocol (L2TP)
+  *
+  Layer Two Tunneling Protocol (L2TP) (L2TP) [M/n/y/?] m
+    L2TP debugfs support (L2TP_DEBUGFS) [M/n/?] m
+    L2TPv3 support (L2TP_V3) [Y/n/?] y
+      L2TP IP encapsulation for L2TPv3 (L2TP_IP) [M/n/y/?] m
+      L2TP ethernet pseudowire support for L2TPv3 (L2TP_ETH) [M/n/y/?] m
+  802.1d Ethernet Bridging (BRIDGE) [M/n/y/?] m
+    IGMP/MLD snooping (BRIDGE_IGMP_SNOOPING) [Y/n/?] y
+    VLAN filtering (BRIDGE_VLAN_FILTERING) [Y/n/?] y
+  802.1Q/802.1ad VLAN Support (VLAN_8021Q) [M/n/y/?] m
+    GVRP (GARP VLAN Registration Protocol) support (VLAN_8021Q_GVRP) [Y/n/?] y
+    MVRP (Multiple VLAN Registration Protocol) support (VLAN_8021Q_MVRP) [Y/n/?] y
+  DECnet Support (DECNET) [M/n/y/?] m
+    DECnet: router support (DECNET_ROUTER) [N/y/?] n
+  ANSI/IEEE 802.2 LLC type 2 Support (LLC2) [M/n/y/?] m
+  The IPX protocol (IPX) [M/n/y/?] m
+    IPX: Full internal IPX network (IPX_INTERN) [N/y/?] n
+  Appletalk protocol support (ATALK) [M/n/y/?] m
+    Appletalk interfaces support (DEV_APPLETALK) [M/n/?] m
+      Appletalk-IP driver support (IPDDP) [M/n/?] m
+        IP to Appletalk-IP Encapsulation support (IPDDP_ENCAP) [Y/n/?] y
+  CCITT X.25 Packet Layer (X25) [N/m/y/?] n
+  LAPB Data Link Driver (LAPB) [M/n/y/?] m
+  Phonet protocols family (PHONET) [M/n/y/?] m
+  *
+  * 6LoWPAN Support
+  *
+  6LoWPAN Support (6LOWPAN) [N/m/y/?] (NEW)
+  *
+  * IEEE Std 802.15.4 Low-Rate Wireless Personal Area Networks support
+  *
+  IEEE Std 802.15.4 Low-Rate Wireless Personal Area Networks support (IEEE802154) [M/n/y/?] m
+    IEEE 802.15.4 experimental netlink support (IEEE802154_NL802154_EXPERIMENTAL) [N/y/?] (NEW)
+    IEEE 802.15.4 socket interface (IEEE802154_SOCKET) [M/n/?] (NEW)
+    Generic IEEE 802.15.4 Soft Networking Stack (mac802154) (MAC802154) [N/m/?] n
+  *
+  * QoS and/or fair queueing
+  *
+  QoS and/or fair queueing (NET_SCHED) [Y/n/?] y
+    *
+    * Queueing/Scheduling
+    *
+    Class Based Queueing (CBQ) (NET_SCH_CBQ) [M/n/y/?] m
+    Hierarchical Token Bucket (HTB) (NET_SCH_HTB) [M/n/y/?] m
+    Hierarchical Fair Service Curve (HFSC) (NET_SCH_HFSC) [M/n/y/?] m
+    ATM Virtual Circuits (ATM) (NET_SCH_ATM) [M/n/?] m
+    Multi Band Priority Queueing (PRIO) (NET_SCH_PRIO) [M/n/y/?] m
+    Hardware Multiqueue-aware Multi Band Queuing (MULTIQ) (NET_SCH_MULTIQ) [M/n/y/?] m
+    Random Early Detection (RED) (NET_SCH_RED) [M/n/y/?] m
+    Stochastic Fair Blue (SFB) (NET_SCH_SFB) [M/n/y/?] m
+    Stochastic Fairness Queueing (SFQ) (NET_SCH_SFQ) [M/n/y/?] m
+    True Link Equalizer (TEQL) (NET_SCH_TEQL) [M/n/y/?] m
+    Token Bucket Filter (TBF) (NET_SCH_TBF) [M/n/y/?] m
+    Generic Random Early Detection (GRED) (NET_SCH_GRED) [M/n/y/?] m
+    Differentiated Services marker (DSMARK) (NET_SCH_DSMARK) [M/n/y/?] m
+    Network emulator (NETEM) (NET_SCH_NETEM) [M/n/y/?] m
+    Deficit Round Robin scheduler (DRR) (NET_SCH_DRR) [M/n/y/?] m
+    Multi-queue priority scheduler (MQPRIO) (NET_SCH_MQPRIO) [M/n/y/?] m
+    CHOose and Keep responsive flow scheduler (CHOKE) (NET_SCH_CHOKE) [M/n/y/?] m
+    Quick Fair Queueing scheduler (QFQ) (NET_SCH_QFQ) [M/n/y/?] m
+    Controlled Delay AQM (CODEL) (NET_SCH_CODEL) [M/n/y/?] m
+    Fair Queue Controlled Delay AQM (FQ_CODEL) (NET_SCH_FQ_CODEL) [M/n/y/?] m
+    Fair Queue (NET_SCH_FQ) [M/n/y/?] m
+    Heavy-Hitter Filter (HHF) (NET_SCH_HHF) [M/n/y/?] m
+    Proportional Integral controller Enhanced (PIE) scheduler (NET_SCH_PIE) [M/n/y/?] m
+    Ingress/classifier-action Qdisc (NET_SCH_INGRESS) [M/n/y/?] m
+    Plug network traffic until release (PLUG) (NET_SCH_PLUG) [M/n/y/?] m
+    *
+    * Classification
+    *
+    Elementary classification (BASIC) (NET_CLS_BASIC) [M/n/y/?] m
+    Traffic-Control Index (TCINDEX) (NET_CLS_TCINDEX) [M/n/y/?] m
+    Routing decision (ROUTE) (NET_CLS_ROUTE4) [M/n/y/?] m
+    Netfilter mark (FW) (NET_CLS_FW) [M/n/y/?] m
+    Universal 32bit comparisons w/ hashing (U32) (NET_CLS_U32) [M/n/y/?] m
+      Performance counters support (CLS_U32_PERF) [Y/n/?] y
+      Netfilter marks support (CLS_U32_MARK) [Y/n/?] y
+    IPv4 Resource Reservation Protocol (RSVP) (NET_CLS_RSVP) [M/n/y/?] m
+    IPv6 Resource Reservation Protocol (RSVP6) (NET_CLS_RSVP6) [M/n/y/?] m
+    Flow classifier (NET_CLS_FLOW) [M/n/y/?] m
+    Control Group Classifier (NET_CLS_CGROUP) [M/n/y/?] m
+    BPF-based classifier (NET_CLS_BPF) [M/n/y/?] m
+    Flower classifier (NET_CLS_FLOWER) [N/m/y/?] (NEW)
+    Extended Matches (NET_EMATCH) [Y/n/?] y
+      Stack size (NET_EMATCH_STACK) [32] 32
+      Simple packet data comparison (NET_EMATCH_CMP) [M/n/y/?] m
+      Multi byte comparison (NET_EMATCH_NBYTE) [M/n/y/?] m
+      U32 key (NET_EMATCH_U32) [M/n/y/?] m
+      Metadata (NET_EMATCH_META) [M/n/y/?] m
+      Textsearch (NET_EMATCH_TEXT) [M/n/y/?] m
+      CAN Identifier (NET_EMATCH_CANID) [M/n/y/?] m
+      IPset (NET_EMATCH_IPSET) [M/n/?] m
+    Actions (NET_CLS_ACT) [Y/n/?] y
+      Traffic Policing (NET_ACT_POLICE) [M/n/y/?] m
+      Generic actions (NET_ACT_GACT) [M/n/y/?] m
+        Probability support (GACT_PROB) [Y/n/?] y
+      Redirecting and Mirroring (NET_ACT_MIRRED) [M/n/y/?] m
+      IPtables targets (NET_ACT_IPT) [M/n/?] m
+      Stateless NAT (NET_ACT_NAT) [M/n/y/?] m
+      Packet Editing (NET_ACT_PEDIT) [M/n/y/?] m
+      Simple Example (Debug) (NET_ACT_SIMP) [M/n/y/?] m
+      SKB Editing (NET_ACT_SKBEDIT) [M/n/y/?] m
+      Checksum Updating (NET_ACT_CSUM) [M/n/y/?] m
+      Vlan manipulation (NET_ACT_VLAN) [N/m/y/?] (NEW)
+      BPF based action (NET_ACT_BPF) [N/m/y/?] (NEW)
+      Netfilter Connection Mark Retriever (NET_ACT_CONNMARK) [N/m/?] (NEW)
+      Inter-FE action based on IETF ForCES InterFE LFB (NET_ACT_IFE) [N/m/y/?] (NEW)
+    Incoming device classification (NET_CLS_IND) [Y/n/?] y
+  Data Center Bridging support (DCB) [Y/n/?] y
+  DNS Resolver support (DNS_RESOLVER) [M/y/?] m
+  B.A.T.M.A.N. Advanced Meshing Protocol (BATMAN_ADV) [M/n/y/?] m
+    B.A.T.M.A.N. V protocol (experimental) (BATMAN_ADV_BATMAN_V) [N/y/?] (NEW)
+    Bridge Loop Avoidance (BATMAN_ADV_BLA) [Y/n/?] y
+    Distributed ARP Table (BATMAN_ADV_DAT) [Y/n/?] y
+    Network Coding (BATMAN_ADV_NC) [Y/n/?] y
+    Multicast optimisation (BATMAN_ADV_MCAST) [Y/n/?] y
+    B.A.T.M.A.N. debugging (BATMAN_ADV_DEBUG) [N/y/?] n
+  Open vSwitch (OPENVSWITCH) [M/n/?] m
+    Open vSwitch GRE tunneling support (OPENVSWITCH_GRE) [M/n/?] m
+    Open vSwitch VXLAN tunneling support (OPENVSWITCH_VXLAN) [M/n/?] m
+  Virtual Socket protocol (VSOCKETS) [M/n/y/?] m
+    VMware VMCI transport for Virtual Sockets (VMWARE_VMCI_VSOCKETS) [M/n/?] m
+  NETLINK: socket monitoring interface (NETLINK_DIAG) [M/n/y/?] m
+  *
+  * MultiProtocol Label Switching
+  *
+  MultiProtocol Label Switching (MPLS) [Y/?] (NEW) y
+    MPLS: GSO support (NET_MPLS_GSO) [Y/m/?] y
+    MPLS: routing support (MPLS_ROUTING) [N/m/y/?] (NEW)
+  High-availability Seamless Redundancy (HSR) (HSR) [N/m/y/?] n
+  Switch (and switch-ish) device support (EXPERIMENTAL) (NET_SWITCHDEV) [N/y/?] (NEW)
+  L3 Master device support (NET_L3_MASTER_DEV) [N/y/?] (NEW)
+  Network priority cgroup (CGROUP_NET_PRIO) [Y/n/?] y
+  Network classid cgroup (CGROUP_NET_CLASSID) [Y/?] y
+  enable BPF Just In Time compiler (BPF_JIT) [Y/n/?] y
+  *
+  * Network testing
+  *
+  Packet Generator (USE WITH CAUTION) (NET_PKTGEN) [M/n/y/?] m
+  TCP connection probing (NET_TCPPROBE) [N/m/y/?] n
+  Network packet drop alerting service (NET_DROP_MONITOR) [M/n/y/?] m
+  *
+  * Amateur Radio support
+  *
+  Amateur Radio support (HAMRADIO) [Y/n/?] y
+    *
+    * Packet Radio protocols
+    *
+    Amateur Radio AX.25 Level 2 protocol (AX25) [M/n/y/?] m
+      AX.25 DAMA Slave support (AX25_DAMA_SLAVE) [N/y/?] n
+      Amateur Radio NET/ROM protocol (NETROM) [M/n/?] m
+      Amateur Radio X.25 PLP (Rose) (ROSE) [M/n/?] m
+      *
+      * AX.25 network device drivers
+      *
+      Serial port KISS driver (MKISS) [M/n/?] m
+      Serial port 6PACK driver (6PACK) [M/n/?] m
+      BPQ Ethernet driver (BPQETHER) [M/n/?] m
+      BAYCOM ser12 fullduplex driver for AX.25 (BAYCOM_SER_FDX) [M/n/?] m
+      BAYCOM ser12 halfduplex driver for AX.25 (BAYCOM_SER_HDX) [M/n/?] m
+      BAYCOM picpar and par96 driver for AX.25 (BAYCOM_PAR) [M/n/?] m
+      YAM driver for AX.25 (YAM) [M/n/?] m
+  *
+  * CAN bus subsystem support
+  *
+  CAN bus subsystem support (CAN) [M/n/y/?] m
+    Raw CAN Protocol (raw access with CAN-ID filtering) (CAN_RAW) [M/n/?] m
+    Broadcast Manager CAN Protocol (with content filtering) (CAN_BCM) [M/n/?] m
+    CAN Gateway/Router (with netlink configuration) (CAN_GW) [M/n/?] m
+    *
+    * CAN Device Drivers
+    *
+    Virtual Local CAN Interface (vcan) (CAN_VCAN) [M/n/?] m
+    Serial / USB serial CAN Adaptors (slcan) (CAN_SLCAN) [M/n/?] m
+    Platform CAN drivers with Netlink support (CAN_DEV) [M/n/?] m
+      CAN bit-timing calculation (CAN_CALC_BITTIMING) [Y/n/?] y
+      Enable LED triggers for Netlink based drivers (CAN_LEDS) [N/y/?] n
+      *
+      * Bosch C_CAN/D_CAN devices
+      *
+      Bosch C_CAN/D_CAN devices (CAN_C_CAN) [N/m] n
+      *
+      * Bosch CC770 and Intel AN82527 devices
+      *
+      Bosch CC770 and Intel AN82527 devices (CAN_CC770) [N/m] n
+      IFI CAN_FD IP (CAN_IFI_CANFD) [N/m/?] (NEW)
+      Bosch M_CAN devices (CAN_M_CAN) [N/m/?] (NEW)
+      *
+      * Philips/NXP SJA1000 devices
+      *
+      Philips/NXP SJA1000 devices (CAN_SJA1000) [M/n] m
+        ISA Bus based legacy SJA1000 driver (CAN_SJA1000_ISA) [M/n/?] m
+        Generic Platform Bus based SJA1000 driver (CAN_SJA1000_PLATFORM) [N/m/?] n
+        EMS CPC-CARD Card (CAN_EMS_PCMCIA) [M/n/?] m
+        EMS CPC-PCI, CPC-PCIe and CPC-104P Card (CAN_EMS_PCI) [M/n/?] m
+        PEAK PCAN-PC Card (CAN_PEAK_PCMCIA) [M/n/?] m
+        PEAK PCAN-PCI/PCIe/miniPCI Cards (CAN_PEAK_PCI) [M/n/?] m
+          PEAK PCAN-ExpressCard Cards (CAN_PEAK_PCIEC) [Y/n/?] y
+        Kvaser PCIcanx and Kvaser PCIcan PCI Cards (CAN_KVASER_PCI) [M/n/?] m
+        PLX90xx PCI-bridge based Cards (CAN_PLX_PCI) [M/n/?] m
+      Softing Gmbh CAN generic support (CAN_SOFTING) [M/n/?] m
+        Softing Gmbh CAN pcmcia cards (CAN_SOFTING_CS) [M/n/?] m
+      *
+      * CAN SPI interfaces
+      *
+      Microchip MCP251x SPI CAN controllers (CAN_MCP251X) [N/m/?] n
+      *
+      * CAN USB interfaces
+      *
+      EMS CPC-USB/ARM7 CAN/USB interface (CAN_EMS_USB) [M/n/?] m
+      ESD USB/2 CAN/USB interface (CAN_ESD_USB2) [M/n/?] m
+      Geschwister Schneider UG interfaces (CAN_GS_USB) [M/n/?] m
+      Kvaser CAN/USB interface (CAN_KVASER_USB) [M/n/?] m
+      PEAK PCAN-USB/USB Pro interfaces for CAN 2.0b/CAN-FD (CAN_PEAK_USB) [M/n/?] m
+      8 devices USB2CAN interface (CAN_8DEV_USB) [M/n/?] m
+    CAN devices debugging messages (CAN_DEBUG_DEVICES) [N/y/?] n
+  *
+  * IrDA (infrared) subsystem support
+  *
+  IrDA (infrared) subsystem support (IRDA) [M/n/y/?] m
+    *
+    * IrDA protocols
+    *
+    IrLAN protocol (IRLAN) [M/n/?] m
+    IrNET protocol (IRNET) [M/n/?] m
+    IrCOMM protocol (IRCOMM) [M/n/?] m
+    Ultra (connectionless) protocol (IRDA_ULTRA) [N/y/?] n
+    *
+    * IrDA options
+    *
+    Cache last LSAP (IRDA_CACHE_LAST_LSAP) [Y/n/?] y
+    Fast RRs (low latency) (IRDA_FAST_RR) [Y/n/?] y
+    Debug information (IRDA_DEBUG) [N/y/?] n
+    *
+    * Infrared-port device drivers
+    *
+    *
+    * SIR device drivers
+    *
+    IrTTY (uses Linux serial driver) (IRTTY_SIR) [M/n/?] m
+    *
+    * Dongle support
+    *
+    Serial dongle support (DONGLE) [Y/n/?] y
+      ESI JetEye PC dongle (ESI_DONGLE) [M/n/?] m
+      ACTiSYS IR-220L and IR220L+ dongle (ACTISYS_DONGLE) [M/n/?] m
+      Tekram IrMate 210B dongle (TEKRAM_DONGLE) [M/n/?] m
+      TOIM3232 IrDa dongle (TOIM3232_DONGLE) [M/n/?] m
+      Parallax LiteLink dongle (LITELINK_DONGLE) [M/n/?] m
+      Mobile Action MA600 dongle (MA600_DONGLE) [M/n/?] m
+      Greenwich GIrBIL dongle (GIRBIL_DONGLE) [M/n/?] m
+      Microchip MCP2120 (MCP2120_DONGLE) [M/n/?] m
+      Old Belkin dongle (OLD_BELKIN_DONGLE) [M/n/?] m
+      ACTiSYS IR-200L dongle (ACT200L_DONGLE) [M/n/?] m
+    KingSun/DonShine DS-620 IrDA-USB dongle (KINGSUN_DONGLE) [M/n/?] m
+    KingSun Dazzle IrDA-USB dongle (KSDAZZLE_DONGLE) [M/n/?] m
+    KingSun KS-959 IrDA-USB dongle (KS959_DONGLE) [M/n/?] m
+    *
+    * FIR device drivers
+    *
+    IrDA USB dongles (USB_IRDA) [M/n/?] m
+    SigmaTel STIr4200 bridge (SIGMATEL_FIR) [M/n/?] m
+    NSC PC87108/PC87338 (NSC_FIR) [M/n/?] m
+    Winbond W83977AF (IR) (WINBOND_FIR) [M/n/?] m
+    SMSC IrCC (SMC_IRCC_FIR) [M/n/?] m
+    ALi M5123 FIR (ALI_FIR) [M/n/?] m
+    VLSI 82C147 SIR/MIR/FIR (VLSI_FIR) [M/n/?] m
+    VIA VT8231/VT1211 SIR/MIR/FIR (VIA_FIR) [M/n/?] m
+    MosChip MCS7780 IrDA-USB dongle (MCS_FIR) [M/n/?] m
+  *
+  * Bluetooth subsystem support
+  *
+  Bluetooth subsystem support (BT) [M/n/?] m
+    Bluetooth Classic (BR/EDR) features (BT_BREDR) [Y/n] (NEW)
+      RFCOMM protocol support (BT_RFCOMM) [M/n/y/?] m
+        RFCOMM TTY support (BT_RFCOMM_TTY) [Y/n/?] y
+      BNEP protocol support (BT_BNEP) [M/n/y/?] m
+        Multicast filter support (BT_BNEP_MC_FILTER) [Y/n/?] y
+        Protocol filter support (BT_BNEP_PROTO_FILTER) [Y/n/?] y
+      CMTP protocol support (BT_CMTP) [M/n/?] m
+      HIDP protocol support (BT_HIDP) [M/n/y/?] m
+      Bluetooth High Speed (HS) features (BT_HS) [Y/n] (NEW)
+    Bluetooth Low Energy (LE) features (BT_LE) [Y/n] (NEW)
+    Enable LED triggers (BT_LEDS) [N/y/?] (NEW)
+    Bluetooth self testing support (BT_SELFTEST) [N/y/?] (NEW)
+    Export Bluetooth internals in debugfs (BT_DEBUGFS) [Y/n/?] (NEW)
+    *
+    * Bluetooth device drivers
+    *
+    HCI USB driver (BT_HCIBTUSB) [M/n/?] m
+      Broadcom protocol support (BT_HCIBTUSB_BCM) [Y/n/?] (NEW)
+      Realtek protocol support (BT_HCIBTUSB_RTL) [Y/n/?] (NEW)
+    HCI SDIO driver (BT_HCIBTSDIO) [M/n/?] m
+    HCI UART driver (BT_HCIUART) [M/n/?] m
+      UART (H4) protocol support (BT_HCIUART_H4) [Y/?] y
+      BCSP protocol support (BT_HCIUART_BCSP) [Y/n/?] y
+      Atheros AR300x serial support (BT_HCIUART_ATH3K) [Y/n/?] y
+      HCILL protocol support (BT_HCIUART_LL) [Y/n/?] y
+      Three-wire UART (H5) protocol support (BT_HCIUART_3WIRE) [Y/n/?] y
+      Intel protocol support (BT_HCIUART_INTEL) [N/y/?] (NEW)
+      Broadcom protocol support (BT_HCIUART_BCM) [N/y/?] (NEW)
+      Qualcomm Atheros protocol support (BT_HCIUART_QCA) [N/y/?] (NEW)
+      Intel AG6XX protocol support (BT_HCIUART_AG6XX) [N/y/?] (NEW)
+    HCI BCM203x USB driver (BT_HCIBCM203X) [M/n/?] m
+    HCI BPA10x USB driver (BT_HCIBPA10X) [M/n/?] m
+    HCI BlueFRITZ! USB driver (BT_HCIBFUSB) [M/n/?] m
+    HCI DTL1 (PC Card) driver (BT_HCIDTL1) [M/n/?] m
+    HCI BT3C (PC Card) driver (BT_HCIBT3C) [M/n/?] m
+    HCI BlueCard (PC Card) driver (BT_HCIBLUECARD) [M/n/?] m
+    HCI UART (PC Card) device driver (BT_HCIBTUART) [N/m/?] n
+    HCI VHCI (Virtual HCI device) driver (BT_HCIVHCI) [M/n/?] m
+    Marvell Bluetooth driver support (BT_MRVL) [M/n/?] m
+      Marvell BT-over-SDIO driver (BT_MRVL_SDIO) [M/n/?] m
+    Atheros firmware download driver (BT_ATH3K) [M/n/?] m
+  RxRPC session sockets (AF_RXRPC) [M/y/?] m
+    RxRPC dynamic debugging (AF_RXRPC_DEBUG) [N/y/?] n
+    RxRPC Kerberos security (RXKAD) [M/n/?] m
+  KCM sockets (AF_KCM) [N/m/y/?] (NEW)
+  *
+  * Wireless
+  *
+  Wireless (WIRELESS) [Y] y
+    cfg80211 - wireless configuration API (CFG80211) [M/?] m
+      nl80211 testmode command (NL80211_TESTMODE) [N/y/?] n
+      enable developer warnings (CFG80211_DEVELOPER_WARNINGS) [N/y/?] n
+      cfg80211 certification onus (CFG80211_CERTIFICATION_ONUS) [N/y/?] n
+      enable powersave by default (CFG80211_DEFAULT_PS) [Y/n/?] y
+      cfg80211 DebugFS entries (CFG80211_DEBUGFS) [N/y/?] n
+      use statically compiled regulatory rules database (CFG80211_INTERNAL_REGDB) [N/y/?] n
+    lib80211 debugging messages (LIB80211_DEBUG) [N/y/?] n
+    Generic IEEE 802.11 Networking Stack (mac80211) (MAC80211) [M/n/?] m
+    Minstrel (MAC80211_RC_MINSTREL) [Y/n/?] y
+      Minstrel 802.11n support (MAC80211_RC_MINSTREL_HT) [Y/n/?] y
+        Minstrel 802.11ac support (MAC80211_RC_MINSTREL_VHT) [N/y/?] (NEW)
+    Default rate control algorithm
+    > 1. Minstrel (MAC80211_RC_DEFAULT_MINSTREL)
+    choice[1]: 1
+    Enable mac80211 mesh networking (pre-802.11s) support (MAC80211_MESH) [Y/n/?] y
+    Enable LED triggers (MAC80211_LEDS) [Y/?] y
+    Export mac80211 internals in DebugFS (MAC80211_DEBUGFS) [N/y/?] n
+    Trace all mac80211 debug messages (MAC80211_MESSAGE_TRACING) [N/y/?] n
+    *
+    * Select mac80211 debugging features
+    *
+    Select mac80211 debugging features (MAC80211_DEBUG_MENU) [N/y/?] n
+  *
+  * WiMAX Wireless Broadband support
+  *
+  WiMAX Wireless Broadband support (WIMAX) [M/n/?] m
+    WiMAX debug level (WIMAX_DEBUG_LEVEL) [8] 8
+  *
+  * RF switch subsystem support
+  *
+  RF switch subsystem support (RFKILL) [M/n/y/?] m
+    RF switch input support (RFKILL_INPUT) [Y/n] y
+    GPIO RFKILL driver (RFKILL_GPIO) [N/m/?] n
+  *
+  * Plan 9 Resource Sharing Support (9P2000)
+  *
+  Plan 9 Resource Sharing Support (9P2000) (NET_9P) [M/n/y/?] m
+    9P Virtio Transport (NET_9P_VIRTIO) [M/n/?] m
+    9P RDMA Transport (Experimental) (NET_9P_RDMA) [M/n/?] m
+    Debug information (NET_9P_DEBUG) [N/y/?] n
+  *
+  * CAIF support
+  *
+  CAIF support (CAIF) [N/m/y/?] n
+  Ceph core library (CEPH_LIB) [M/y/?] m
+    Include file:line in ceph debug output (CEPH_LIB_PRETTYDEBUG) [N/y/?] n
+    Use in-kernel support for DNS lookup (CEPH_LIB_USE_DNS_RESOLVER) [N/y/?] n
+  *
+  * NFC subsystem support
+  *
+  NFC subsystem support (NFC) [M/n/?] m
+    NFC Digital Protocol stack support (NFC_DIGITAL) [M/n/?] m
+    NCI protocol support (NFC_NCI) [N/m/?] n
+    NFC HCI implementation (NFC_HCI) [N/m/?] n
+    *
+    * Near Field Communication (NFC) devices
+    *
+    NXP PN533 USB driver (NFC_PN533) [M/n/?] m
+    Texas Instruments TRF7970a NFC driver (NFC_TRF7970A) [N/m/?] n
+    NFC hardware simulator driver (NFC_SIM) [M/n/?] m
+    Sony NFC Port-100 Series USB device support (NFC_PORT100) [M/n/?] m
+    ST95HF NFC Transceiver driver (NFC_ST95HF) [N/m/?] (NEW)
+  Network light weight tunnels (LWTUNNEL) [N/y/?] (NEW)
+  Network physical/parent device Netlink interface (NET_DEVLINK) [N/m/y/?] (NEW)
+*
+* Device Drivers
+*
+*
+* Generic Driver Options
+*
+Support for uevent helper (UEVENT_HELPER) [Y/n/?] y
+  path to uevent helper (UEVENT_HELPER_PATH) []
+Maintain a devtmpfs filesystem to mount at /dev (DEVTMPFS) [Y/n/?] y
+  Automount devtmpfs at /dev, after the kernel mounted the rootfs (DEVTMPFS_MOUNT) [N/y/?] n
+Select only drivers that don't need compile-time external firmware (STANDALONE) [Y/n/?] y
+Prevent firmware from being built (PREVENT_FIRMWARE_BUILD) [Y/n/?] y
+Userspace firmware loading support (FW_LOADER) [Y/?] y
+  Include in-kernel firmware blobs in kernel binary (FIRMWARE_IN_KERNEL) [N/y/?] n
+  External firmware blobs to build into the kernel binary (EXTRA_FIRMWARE) []
+Fallback user-helper invocation for firmware loading (FW_LOADER_USER_HELPER_FALLBACK) [N/y/?] (NEW)
+Allow device coredump (ALLOW_DEV_COREDUMP) [Y/n/?] (NEW)
